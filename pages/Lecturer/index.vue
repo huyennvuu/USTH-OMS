@@ -5,6 +5,12 @@
       style="width: 100%"
       class="center"
       >
+      <el-table-column
+        prop="id"
+        label="ID"
+        width="50"
+        class="center">
+      </el-table-column>
       <el-table-column 
         prop="imgsrc"
         label="Avatar"
@@ -12,47 +18,41 @@
         <img :src= "imgscr" width="42" height="42" class="ava">
       </el-table-column>
       <el-table-column
-        prop="id"
-        label="Student ID"
-        width="120"
-        class="center">
-      </el-table-column>
-      <el-table-column
         prop="fullname"
         label="Full Name"
-        width="200">
+        width="190">
       </el-table-column>
       <el-table-column
         prop="school"
         label="High School"
-        width="200">
+        width="190">
       </el-table-column>
       <el-table-column
         prop="first_traing_program"
         label="Training Program"
-        width="180">
+        width="190">
       </el-table-column>
       <el-table-column
         prop="dob"
         label="Date of birth"
-        width="140">
+        width="130">
       </el-table-column>
       <el-table-column
         prop="gender"
         label="Gender"
-        width="70">
+        width="90">
       </el-table-column>
       <el-table-column
-        width="140">
+        width="120">
         <nuxt-link 
-            to="/Lecturer/evaluation-form"
+            to="/Student/addmission-form"
             class="button--grey"
         >
           Detail
         </nuxt-link>
       </el-table-column>
       <el-table-column
-        width="140">
+        width="120">
         <nuxt-link 
             to="/Lecturer/evaluation-form"
             class="button--green"

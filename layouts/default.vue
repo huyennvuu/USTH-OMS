@@ -30,7 +30,7 @@ html {
   border: 1px solid #3b8070;
   color: #3b8070;
   text-decoration: none;
-  padding: 10px 30px;
+  padding: 10px 20px;
 }
 
 .button--green:hover {
@@ -44,7 +44,7 @@ html {
   border: 1px solid #35495e;
   color: #35495e;
   text-decoration: none;
-  padding: 10px 30px;
+  padding: 10px 20px;
   margin-left: 15px;
 }
 
