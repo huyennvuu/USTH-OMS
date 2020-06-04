@@ -1,62 +1,69 @@
 <template>
   <div class="container">
     <h2 class="subtitle">Addmission Form</h2>
-    <el-form :label-position="labelPosition" ref="form" :model="form" label-width="100px">
+    <el-form
+      :label-position="labelPosition"
+      ref="form"
+      :model="form"
+      label-width="100px"
+    >
       <!-- Add ava -->
-      <el-form-item>
-        <el-upload
+      <!-- <el-form-item> -->
+        <!-- <el-upload
           action="#"
           list-type="picture-card"
           :auto-upload="false"
-          style="text-align:center">
-            <i slot="default" class="el-icon-plus"></i>
-            <div slot="file" slot-scope="{file}">
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url" alt=""
+          style="text-align:center"
+        >
+          <i slot="default" class="el-icon-plus"></i>
+          <div slot="file" slot-scope="{ file }">
+            <img
+              class="el-upload-list__item-thumbnail"
+              :src="file.url"
+              alt=""
+            />
+            <span class="el-upload-list__item-actions">
+              <span
+                class="el-upload-list__item-preview"
+                @click="handlePictureCardPreview(file)"
               >
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-preview"
-                  @click="handlePictureCardPreview(file)"
-                >
-                  <i class="el-icon-zoom-in"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleDownload(file)"
-                >
-                  <i class="el-icon-download"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <i class="el-icon-delete"></i>
-                </span>
+                <i class="el-icon-zoom-in"></i>
               </span>
-            </div>
+              <span
+                v-if="!disabled"
+                class="el-upload-list__item-delete"
+                @click="handleDownload(file)"
+              >
+                <i class="el-icon-download"></i>
+              </span>
+              <span
+                v-if="!disabled"
+                class="el-upload-list__item-delete"
+                @click="handleRemove(file)"
+              >
+                <i class="el-icon-delete"></i>
+              </span>
+            </span>
+          </div>
         </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
+        <! <el-dialog :visible.sync="dialogVisible">
           <img width="100%" :src="dialogImageUrl" alt="">
-        </el-dialog>
-      </el-form-item>
-      
+        </el-dialog> -->
+      <!-- </el-form-item> --> 
+
       <!-- Input Information -->
       <el-form-item label="1. Họ và tên/ Full name:">
         <el-input v-model="form.full_name"></el-input>
       </el-form-item>
 
       <el-form-item label="2. Số chứng minh thư nhân dân/ ID number:">
-        <el-input v-model="form.ID_number"></el-input>
+        <el-input v-model="form.id_number"></el-input>
       </el-form-item>
       <el-form-item label="Ngày cấp:">
-        <el-input v-model="form.ID_date"></el-input>
+        <el-input v-model="form.id_date"></el-input>
       </el-form-item>
       <el-form-item label="Nơi cấp:">
-        <el-input v-model="form.ID_place"></el-input>
+        <el-input v-model="form.id_place"></el-input>
       </el-form-item>
 
       <el-form-item label="3. Ngày sinh/ Date of birth:">
@@ -65,8 +72,8 @@
 
       <el-form-item label="4. Giới tính/ Gender">
         <el-radio-group v-model="form.gender">
-          <el-radio label="Nam/ Male" value="male"></el-radio>
-          <el-radio label="Nữ/ Female" value="female"></el-radio>
+          <el-radio v-model="form.gender" label="Nam/ Male" value="male"></el-radio>
+          <el-radio v-model="form.gender" label="Nữ/ Female" value="female"></el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -82,19 +89,23 @@
         <el-input v-model="form.ethnicity"></el-input>
       </el-form-item>
 
-      <el-form-item label="8. Địa chỉ gửi thư/ Current mailing address for correspondence:">
+      <el-form-item
+        label="8. Địa chỉ gửi thư/ Current mailing address for correspondence:"
+      >
         <el-input v-model="form.mail_address"></el-input>
       </el-form-item>
 
-      <p class="input-title">9. Hộ khẩu thường trú/ Permanent Resident Address:</p> 
+      <p class="input-title">
+        9. Hộ khẩu thường trú/ Permanent Resident Address:
+      </p>
       <el-form-item label="Số nhà/ House No.:">
         <el-input v-model="form.house_number"></el-input>
       </el-form-item>
-      
+
       <el-form-item label="Đường/ Street:">
         <el-input v-model="form.street"></el-input>
       </el-form-item>
-      
+
       <el-form-item label="Phường,xã/ Ward, commune:">
         <el-input v-model="form.ward"></el-input>
       </el-form-item>
@@ -106,7 +117,7 @@
       <el-form-item label="Tỉnh, thành phố/ Province:">
         <el-input v-model="form.province"></el-input>
       </el-form-item>
-      
+
       <el-form-item label="10. Di động/Mobile phone:">
         <el-input v-model="form.phone"></el-input>
       </el-form-item>
@@ -125,11 +136,11 @@
 
       <el-form-item label="14. Tình trạng hôn nhân/ Marital status:">
         <el-radio-group v-model="form.marital_status">
-          <el-radio label="Độc thân/ Single" value="single"></el-radio>
-          <el-radio label="Đã kết hôn/ Mariied" value="married"></el-radio>
+          <el-radio v-model="form.marital_status" label="Độc thân/ Single" value="single"></el-radio>
+          <el-radio v-model="form.marital_status" label="Đã kết hôn/ Mariied" value="married"></el-radio>
         </el-radio-group>
       </el-form-item>
-      
+
       <el-form-item label="15. Tên trường/ School name:">
         <el-input v-model="form.school_name"></el-input>
       </el-form-item>
@@ -143,8 +154,8 @@
       </el-form-item>
 
       <p class="input-title">18. Kết quả học tập/ Result:</p>
-      <br>
-      <br>
+      <br />
+      <br />
       <table>
         <tr>
           <td class="input-title title-lang">Kết quả (theo Học bạ) Result</td>
@@ -183,26 +194,26 @@
               <el-input v-model="form.grade_chemistry_10"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_biology_10"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_it_10"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_english_10"></el-input>
             </el-form-item>
           </td>
         </tr>
-        
+
         <tr>
           <td class="input-title table-lang ">Lớp 11/ Grade 11</td>
           <td>
@@ -230,19 +241,19 @@
               <el-input v-model="form.grade_chemistry_11"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_biology_11"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_it_11"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_english_11"></el-input>
@@ -277,13 +288,13 @@
               <el-input v-model="form.grade_chemistry_12"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_biology_12"></el-input>
             </el-form-item>
           </td>
-          
+
           <td>
             <el-form-item class="table-lang">
               <el-input v-model="form.grade_it_12"></el-input>
@@ -297,14 +308,22 @@
           </td>
         </tr>
       </table>
-      
-      <br>
-      <p class="input-title">* Với thí sinh sẽ tốt nghiệp năm 2020, nếu chưa có điểm trung bình năm lớp 12, vui lòng điền và ghi rõ điểm trung bình học kỳ 1 năm lớp 12/ For candidate who will graduate from high school in 2019, please clearly mention the average mark of the 1st semester of Grade 12 in case the mark for full year is not released</p>
-      <br>
+
+      <br />
+      <p class="input-title">
+        * Với thí sinh sẽ tốt nghiệp năm 2020, nếu chưa có điểm trung bình năm
+        lớp 12, vui lòng điền và ghi rõ điểm trung bình học kỳ 1 năm lớp 12/ For
+        candidate who will graduate from high school in 2019, please clearly
+        mention the average mark of the 1st semester of Grade 12 in case the
+        mark for full year is not released
+      </p>
+      <br />
 
       <!-- Update Adward -->
-      <p class="input-title"> 19. Các thành tích nổi bật (học bổng, giải thưởng …)/ Awards and Distinctions:
-      <div class="upload-container">
+      <p class="input-title">
+        19. Các thành tích nổi bật (học bổng, giải thưởng …)/ Awards and
+        Distinctions:
+        <!-- <div class="upload-container">
         <el-upload
           class="upload-demo"
           action="https://jsonplaceholder.typicode.com/posts/"
@@ -318,9 +337,10 @@
           <el-button class="button--grey">Click to upload</el-button>
           <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
         </el-upload>
-      </div>
+      </div> -->
+      </p>
 
-      <p class="input-title"> 20. Chứng chỉ (nếu có)/ Certificates (if any):</p>
+      <p class="input-title">20. Chứng chỉ (nếu có)/ Certificates (if any):</p>
       <table>
         <tr>
           <td class="input-title title-lang">Ngoại ngữ/ Languages</td>
@@ -352,7 +372,8 @@
               <el-input v-model="form.french_score"></el-input>
             </el-form-item>
           </td>
-        </tr><tr>
+        </tr>
+        <tr>
           <td class="input-title table-lang">Tiếng Việt/ Vietnamese</td>
           <td>
             <el-form-item class="table-lang">
@@ -367,28 +388,35 @@
         </tr>
       </table>
 
-      <p class="input-title">24. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công nghệ Hà Nội chưa?/ Have you ever applied for admissions to University of Science and Technology of Hanoi (USTH) before? </p>
-        <br>
-        <el-radio-group v-model="form.usth_applied">
-          <el-radio label="Có/ Yes" value="true"></el-radio>
-          <div class="container-flex">
-            <el-form-item label="Năm/ Year">
-              <el-input v-model="form.usth_applied_year"></el-input>
-            </el-form-item>
-            <el-form-item label="Đợt/ Wave">
-              <el-input v-model="form.usth_applied_wave"></el-input>
-            </el-form-item>
-          </div>
-          <el-radio label="Không/ No" value="false"></el-radio>
-        </el-radio-group>
-      
-      <br><br><br>
-      <p class="input-title"> 25. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/ Have you ever registered for any University else before?</p>
-        <br>
-        <el-radio-group v-model="form.diff_university_applied">
-          <el-radio label="Có/ Yes" value="true"></el-radio>
-          <div class="container-flex">
-          <el-form-item  label="Năm/ Year:">
+      <p class="input-title">
+        24. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công
+        nghệ Hà Nội chưa?/ Have you ever applied for admissions to University of
+        Science and Technology of Hanoi (USTH) before?
+      </p>
+      <br />
+      <el-radio-group v-model="form.usth_applied">
+        <el-radio v-model="form.usth_applied" label="Có/ Yes" value="true"></el-radio>
+        <div class="container-flex">
+          <el-form-item label="Năm/ Year">
+            <el-input v-model="form.usth_applied_year"></el-input>
+          </el-form-item>
+          <el-form-item label="Đợt/ Wave">
+            <el-input v-model="form.usth_applied_wave"></el-input>
+          </el-form-item>
+        </div>
+        <el-radio v-model="form.usth_applied" label="Không/ No" value="false"></el-radio>
+      </el-radio-group>
+
+      <br /><br /><br />
+      <p class="input-title">
+        25. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/
+        Have you ever registered for any University else before?
+      </p>
+      <br />
+      <el-radio-group >
+        <el-radio v-model="form.diff_university_applied" label="Có/ Yes" value="true"></el-radio>
+        <div class="container-flex">
+          <el-form-item label="Năm/ Year:">
             <el-input v-model="form.diff_university_applied_year"></el-input>
           </el-form-item>
           <el-form-item label="Khối/ Group:">
@@ -400,231 +428,236 @@
           <el-form-item label="Tên trường/ University name:">
             <el-input v-model="form.diff_university_applied_mark"></el-input>
           </el-form-item>
-          </div>
-          <el-radio label="Không/ No" value="false"></el-radio>
-        </el-radio-group>
-        <el-form-item>
-        <div class="container-button"> 
-          <el-button class="button--grey" @click="submitForm('ruleForm')">Submit</el-button>
-          <el-button class="button--green" @click="resetForm('ruleForm')">Reset</el-button>    
         </div>
-        </el-form-item>
+        <el-radio v-model="form.diff_university_applied" label="Không/ No" value="false"></el-radio>
+      </el-radio-group>
+      <el-form-item>
+        <div class="container-button">
+          <el-button class="button--grey" @click="submitForm">Submit</el-button>
+          <!-- <el-button class="button--green" @click="resetForm('ruleForm')">Reset</el-button>     -->
+        </div>
+      </el-form-item>
     </el-form>
   </div>
 </template>
 
-
 <script>
 export default {
-  data() {
+  data:function() {
     return {
-      labelPosition: 'top',
+      labelPosition: "top",
       form: {
         //Update adward
-        fileList: [{
-          name: '',
-          url: ''
-        }], 
+        // fileList: [
+        //   {
+        //     name: "",
+        //     url: ""
+        //   }
+        // ],
 
         //Add ava
-        dialogImageUrl: '',
-        dialogVisible: false,
-        disabled: false,
+        // dialogImageUrl: '',
+        // dialogVisible: false,
+        // disabled: false,
 
         //Information Form
-        full_name :'',
-        id_number :'',
-        id_date: '',
-        id_place: '',
-        dob: '',
-        gender: '',
-        pob: '',
-        nationality: '',
-        ethnicity: '',
-        mail_adress: '',
-        email: '',
-        phone: '',
-        home_phone:'',
-        parent_phone:'',
-        marital_status: '',
+        full_name: "",
+        id_number: "",
+        id_date: "",
+        id_place: "",
+        dob: "",
+        gender: "",
+        pob: "",
+        nationality: "",
+        ethnicity: "",
+        mail_adress: "",
+        email: "",
+        phone: "",
+        home_phone: "",
+        parent_phone: "",
+        marital_status: "",
 
-        school_name: '',
-        class: '',
-        school_address: '',
-        grade_mark_10: '',
-        gpa_mark_10: '',
-        maths_mark_10: '',
-        physics_mark_10: '',
-        chemistry_mark_10: '',
-        biology_mark_10: '',
-        it_mark_10: '',
-        english_mark_10: '',
-        
-        grade_mark_11: '',
-        gpa_mark_11: '',
-        maths_mark_11: '',
-        physics_mark_11: '',
-        chemistry_mark_11: '',
-        biology_mark_11: '',
-        it_mark_11: '',
-        english_mark_11: '',
-        
-        grade_mark_12: '',
-        gpa_mark_12: '',
-        maths_mark_12: '',
-        physics_mark_12: '',
-        chemistry_mark_12: '',
-        biology_mark_12: '',
-        it_mark_12: '',
-        english_mark_12: '',
+        school_name: "",
+        class: "",
+        school_address: "",
+        grade_mark_10: "",
+        gpa_mark_10: "",
+        maths_mark_10: "",
+        physics_mark_10: "",
+        chemistry_mark_10: "",
+        biology_mark_10: "",
+        it_mark_10: "",
+        english_mark_10: "",
 
-        english_certi: '',
-        english_score: '',
-        french_certi: '',
-        french_score: '',
-        viet_certi: '',
-        viet_score: '',
+        grade_mark_11: "",
+        gpa_mark_11: "",
+        maths_mark_11: "",
+        physics_mark_11: "",
+        chemistry_mark_11: "",
+        biology_mark_11: "",
+        it_mark_11: "",
+        english_mark_11: "",
 
-        usth_applied: '',
-        usth_applied_year: '',
-        usth_applied_wave: '',
-        diff_university_applied: '',
-        diff_university_applied_year: '',
-        diff_university_applied_mark: '',
-        diff_university_applied_group: '',
-        diff_university_applied_name: '',
-        national_exam_student_number: '',
-        national_exam_math_result: '',
-        national_exam_physics_result: '',
-        national_exam_chemistry_result: '',
-        national_exam_biology_result: '',
-        national_exam_english_result: '',
-        motivation_letter:'',
-        adward: '',
+        grade_mark_12: "",
+        gpa_mark_12: "",
+        maths_mark_12: "",
+        physics_mark_12: "",
+        chemistry_mark_12: "",
+        biology_mark_12: "",
+        it_mark_12: "",
+        english_mark_12: "",
+
+        english_certi: "",
+        english_score: "",
+        french_certi: "",
+        french_score: "",
+        viet_certi: "",
+        viet_score: "",
+
+        usth_applied: "",
+        usth_applied_year: "",
+        usth_applied_wave: "",
+        diff_university_applied: "",
+        diff_university_applied_year: "",
+        diff_university_applied_mark: "",
+        diff_university_applied_group: "",
+        diff_university_applied_name: "",
+        national_exam_student_number: "",
+        national_exam_math_result: "",
+        national_exam_physics_result: "",
+        national_exam_chemistry_result: "",
+        national_exam_biology_result: "",
+        national_exam_english_result: "",
+        motivation_letter: "",
+        // adward: ""
       }
-    }
+    };
   },
   methods: {
+    //Submit Form
+    submitForm() {
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //     alert('submit!');
+      //   } else {
+      //     console.log('error submit!!');
+      //     return false;
+      //   }
+      // });
+      console.log(this.form);
 
-      //Submit Form
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      
-      //Update Adward
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`The limit is 3, you selected ${files.length} files this time, add up to ${files.length + fileList.length} totally`);
-      },
-      beforeRemove(file, fileList) {
-        return this.$confirm(`Cancel the transfert of ${ file.name } ?`);
-      },
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
 
-      //Add Ava
-      handleRemove(file) {
-        console.log(file);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.dialogVisible = true;
-      },
-      handleDownload(file) {
-        console.log(file);
-      }
+    //Update Adward
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(
+        `The limit is 3, you selected ${
+          files.length
+        } files this time, add up to ${files.length + fileList.length} totally`
+      );
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`Cancel the transfert of ${file.name} ?`);
     }
-}
+
+    //Add Ava
+    // handleRemove(file) {
+    //   console.log(file);
+    // },
+    // handlePictureCardPreview(file) {
+    //   this.dialogImageUrl = file.url;
+    //   this.dialogVisible = true;
+    // },
+    // handleDownload(file) {
+    //   console.log(file);
+    // }
+  }
+};
 </script>
 
 <style scoped>
-  h2{
-    margin-bottom: 30px;
-  }
-  .container {
+h2 {
+  margin-bottom: 30px;
+}
+.container {
   margin: 30px 100px 70px 100px;
   min-height: 100vh;
   display: block;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   text-align: left;
   padding: 50px 100px 50px 100px;
-  }
+}
 
-  .input-title {
-    font-size: 14px;
-    color:#606266;
-  }
+.input-title {
+  font-size: 14px;
+  color: #606266;
+}
 
-  .subtitle {
+.subtitle {
   font-weight: 300;
   font-size: 42px;
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
   text-align: center;
-  }
+}
 
-  .table-grade{
-    position: relative;
-    font-size: 14px;
-    display: inline-block;
-    width: 11%;
-    text-align: center;
-  }
+.table-grade {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 11%;
+  text-align: center;
+}
 
-  table-title{
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-    color:#606266;
-  }
+table-title {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  color: #606266;
+}
 
-  .table-lang{
-    position: relative;
-    font-size: 14px;
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-    vertical-align: middle;
-    align-items: center;
-  }
+.table-lang {
+  position: relative;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  vertical-align: middle;
+  align-items: center;
+}
 
-  .title-lang{
-    text-align: center;
-    font-weight: bold;
-    font-size: 15px;
-  }
-  
-  .upload-container{
-    padding: 20px 50px;
-  }
+.title-lang {
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
 
-  .container-flex{
-    margin-left: 50px;
-  }
+.upload-container {
+  padding: 20px 50px;
+}
 
-  .container-button{
-    float: right;
-    margin: 20px;
-  }
+.container-flex {
+  margin-left: 50px;
+}
 
-  
+.container-button {
+  float: right;
+  margin: 20px;
+}
+
 .button--green {
   display: inline-block;
   border-radius: 4px;
