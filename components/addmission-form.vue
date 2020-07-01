@@ -764,14 +764,12 @@
       </p>
       <el-form-item>
         <div class="container-button">
+          <!-- sendDetail() -->
           <el-button
             class="button--grey"
             @click="
-              AddStudent();
-              AddAddress();
-              AddAcademicHistory();
-              AddApplicationInfo();
-              sendDetail()
+              AddStudent()
+              
             "
             >Submit</el-button
           >
@@ -853,18 +851,6 @@ export default {
       },
       ],
       studentData: {
-        //Update adward
-        // fileList: [
-        //   {
-        //     name: "",
-        //     url: ""
-        //   }
-        // ],
-
-        //Add ava
-        // dialogImageUrl: '',
-        // dialogVisible: false,
-        // disabled: false,
 
         //Information Form
         full_name: "",
@@ -960,32 +946,13 @@ export default {
         }
       }
     },
-
-  // watch: {
-  //   currentIdAdmission: function(){
-  //     this.studentData.user_id = this.currentIdAdmission
-  //     console.log( "Changed", this.currentIdAdmission)
-  //     this.getStudentId()
-  //   },
-  // },
-
-
-  created:function() {
+  mounted: function() {
+    // console.log("This is user id", this.currentIdAdmission)
     this.getWave()
     this.studentData.user_id = this.currentIdAdmission
-    this.getStudentId()
   },
 
   methods: {
-    // //Submit Form
-    // toForm(obj){
-    //   var fd = new FormData();
-    //   for(var i in obj){
-    //     fd.append(this.academicHistoryDatakeys[i], obj[i]);
-    //     console.log("obj: ", this.academicHistoryDatakeys[i]);
-    //   }
-    //   return fd;
-    // },
     async getWave() {
       try {
         const response = await this.$axios.get(
@@ -1046,6 +1013,7 @@ export default {
 
     async getStudentId() {
       try {
+        //console.log("This is user id",this.currentIdAdmission )
         const response = await this.$axios.get(
           "http://localhost/process.php?action=getStudentId",
           {
@@ -1054,7 +1022,8 @@ export default {
             }
           }
         );
-        //console.log("This student id is:", response.data.studentId[0].id)
+        // console.log(response)
+        console.log("This student id is:", response.data.studentId[0].id)
         this.academicHistoryData.student_id = response.data.studentId[0].id;
         this.applicationData.student_id = response.data.studentId[0].id;
         this.addressData.student_id = response.data.studentId[0].id;
