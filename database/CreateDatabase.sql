@@ -1,5 +1,8 @@
 DROP SCHEMA IF EXISTS `usthoms`;
-CREATE SCHEMA `usthoms` ;
+CREATE SCHEMA `usthoms` 
+    CHARACTER SET utf8
+    COLLATE utf8_general_ci
+;
 
 /*User*/
 CREATE TABLE `usthoms`.`User` (

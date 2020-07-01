@@ -1,5 +1,10 @@
 
 export default {
+  server: {
+    port: 3000, // default: 3000
+    host: 'localhost' // default: localhost
+  },
+
   mode: 'universal',
   /*
   ** Headers of the page
@@ -40,7 +45,11 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/axios',
   ],
+  axios: {
+    // proxyHeaders: false
+  },
   /*
   ** Build configuration
   */

@@ -11,9 +11,13 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.10.3",
+    "@nuxtjs/axios": "^5.11.0",
     "element-ui": "^2.4.11",
+    "jspdf": "^1.5.3",
     "nuxt": "^2.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vue-loader": "^15.9.2",
+    "vue-template-compiler": "^2.6.11"
+  }
 }
