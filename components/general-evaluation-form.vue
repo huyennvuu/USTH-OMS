@@ -178,9 +178,8 @@
             class="button--grey"
             @click="
               submitGEF();
-              getEEF();
             "
-            >Next</el-button
+            >Submit</el-button
           >
           <!-- <el-button class="button--green" @click="resetForm('ruleForm')">Reset</el-button>     -->
         </div>
@@ -213,6 +212,7 @@
     <div class="information">
       <p>Date: {{this.generalEvaluationData.datetime}}</p>
       <p>Student ID:  {{ this.generalEvaluationData.student_id }}</p>
+      <p>Lecturer ID:  {{ this.generalEvaluationData.employee_id }}</p>
     </div>
   </div>
 </template>
@@ -223,7 +223,11 @@ export default {
     currentIdGeneralEvaluate: {
       type: String,
       default: ''
-    }
+    },
+    currentEmployeeId: {
+      type: String,
+      default: ''
+    },
   },
   data() {
     return {
@@ -238,7 +242,7 @@ export default {
         other_achievements: "",
         remarks: "",
         student_id:"",
-        jury_id: "3"
+        employee_id: ""
       }
     };
   },
@@ -249,15 +253,20 @@ export default {
 
   watch: {
     currentIdGeneralEvaluate: function(){
-      this.generalEvaluationData.student_id = this.currentIdGeneralEvaluate;
-      console.log( "This is current student id:",this.generalEvaluationData.student_id);
+      this.generalEvaluationData.student_id = this.currentIdGeneralEvaluate
+      console.log( "This is current student id:",this.generalEvaluationData.student_id)
+    },
+    currentEmployeeId: function(){
+      this.generalEvaluationData.employee_id = this.currentEmployeeId
+      console.log( "This is current employee id in EEF:",this.generalEvaluationData.employee_id)
     }
   },
 
   created:function() {
-      this.generalEvaluationData.student_id = this.currentIdGeneralEvaluate;
-      console.log("This is current student id:", this.generalEvaluationData.student_id);
-      
+      this.generalEvaluationData.student_id = this.currentIdGeneralEvaluate
+      console.log("This is current student id:", this.generalEvaluationData.student_id)
+      this.generalEvaluationData.employee_id = this.currentEmployeeId
+      console.log( "This is current employee id in EEF:",this.generalEvaluationData.employee_id)
   },
 
   methods: {
@@ -270,13 +279,6 @@ export default {
 
       this.generalEvaluationData.datetime = finalDate;
     },
-
-    //getStudentId() {
-      // this.generalEvaluationData.student_id = this.currentIdEvaluate;
-      // this.$set(this.generalEvaluationData, 'student_id', this.currentIdEvaluate);
-    //   this.labelPosition = this.currentIdEvaluate;
-    //   console.log( "This is current student id:",this.generalEvaluationData.student_id);
-    // },
 
     submitGEF() {
       console.log("This is GEF data", this.generalEvaluationData);
@@ -291,25 +293,9 @@ export default {
         })
         .catch(function(error) {
           console.log("this is error: ", error.data);
-        });
-    },
+        })
+      this.$message.success('General evaluation form submited!');
 
-      // async getJury() {
-      //   try {
-      //     const response = await this.$axios.get('http://localhost/process.php?action=getJury');
-      //     console.log(response);
-
-      //     this.generalEvaluationData.jury_id = response.data;
-      //     console.log("This is Jury: ", this.generalEvaluationData.jury_id);
-      //   } catch (error) {
-      //     console.error(error);
-      //   }
-      // },
-
-    getEEF(){
-      console.log("This is getting EEF");
-      this.$emit('sendEEF', 'EEF');
-      this.$emit('sendId', this.generalEvaluationData.student_id );
     },
   }
 };

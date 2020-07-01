@@ -125,6 +125,8 @@
         Date:{{this.englishEvaluationData.datetime}}
         <br>
         Student ID:{{this.englishEvaluationData.student_id}}
+        <br>
+        Lecturer ID:{{this.englishEvaluationData.employee_id}}
       </p>
     </div>
   </div>
@@ -136,12 +138,17 @@ export default {
     currentIdEnglishEvaluate: {
       type: String,
       default: ''
+    },
+    currentEmployeeId: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       labelPosition: "top",
       englishEvaluationData: {
+        employee_id: "",
         datetime: "",
         result: "",
         fluency_coherence_mark: "",
@@ -151,7 +158,6 @@ export default {
         pronunciation_mark: "",
         overall: "",
         student_id: "",
-        jury_id: "",
       }
     };
   },
@@ -162,13 +168,15 @@ export default {
   watch: {
     currentIdEnglishEvaluate: function(){
       this.englishEvaluationData.student_id = this.currentIdEnglishEvaluate;
-      console.log( "This is current student id in EEF:",this.englishEvaluationData.student_id);
+    },
+    currentEmployeeId: function(){
+      this.englishEvaluationData.employee_id = this.currentEmployeeId;
     }
   },
 
   created:function() {
     this.englishEvaluationData.student_id = this.currentIdEnglishEvaluate;
-    console.log("This is current student id in EEF:", this.englishEvaluationData.student_id);
+    this.englishEvaluationData.employee_id = this.currentEmployeeId;
   },
 
   methods:{
@@ -195,7 +203,8 @@ export default {
       })
       .catch(function(error) {
         console.log("this is error: ", error.data);
-      });
+      })
+    this.$message.success('English evaluation form submited!');
   }
   }
   

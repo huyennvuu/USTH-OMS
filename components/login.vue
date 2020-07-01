@@ -28,13 +28,20 @@
       </div>
     </div>
     
-    <div class="new-account">
+    <div  class="new-account">
       <el-link @click="sendRegister()" >Create new account</el-link>
     </div>
   </div>
 </template>
 <script>
 export default {
+
+  props: {
+    lecturer: {
+      type: String,
+      default: "0"
+    },
+  },
 
   data: function(){
     return{
@@ -82,7 +89,11 @@ export default {
       }
     },
     sendRegister(){
-      this.$emit('sendRegister', 'register');
+      if(this.lecturer == true){    
+        this.$message.error('Please contact Staffs to register');
+      }else{
+        this.$emit('sendRegister', 'register');
+      }
     }
   }
 }
@@ -90,8 +101,8 @@ export default {
 
 <style scoped>
   .container {
-    width: 60vh;
-    margin: 100px 370px 100px 500px;
+    width: 53vh;
+    margin: 8em 37em;
     min-height: 70vh;
     display: block;
     justify-content: center;

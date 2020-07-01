@@ -15,9 +15,11 @@
       :currentIdAdmission="this.userId" 
       @sendDetail = "currentComponent = $event" 
     />
-    <div v-if="currentComponent === 'studentDetail'" > 
-      <studentDetail :currentIdDetail="this.userId" />
-      <button class="button--grey" @click="pdf()"> export PDF </button>
+    <div v-if="currentComponent === 'studentDetail'" id="printPart" > 
+      <studentDetail 
+        :currentIdDetail="this.userId"
+      />
+      <button v-show="this.button == 'true'" class="button--grey" @click=" hideButton()"> export PDF </button>
     </div>
   </div>
 </template>
@@ -38,15 +40,24 @@ export default {
     return {
       currentComponent: "login",
       userId: "", 
-      username: ""
+      username: "",
+      button: "true",
+      print: "",
     };
   },
+
   methods: {
-    pdf(){
+    hideButton(){
+      this.button = 'hide'
+      window.setTimeout(this.printForm, 1000)
+
+    },
+    printForm(){
       window.print()
+      this.button = 'true'
+
     }
   }
-
 }
 </script>
 
@@ -57,8 +68,8 @@ export default {
   border: 1px solid #35495e;
   color: #35495e;
   text-decoration: none;
-  padding: 20px 50px;
-  margin: 0em 10em 5em 5em ;
+  padding: 20px 30px;
+  margin: 0em 15em 5em 5em ;
   float: right;
 }
 

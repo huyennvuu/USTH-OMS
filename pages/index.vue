@@ -32,7 +32,8 @@ export default {
 
 <style>
 .container {
-  margin: 7em;
+  /* margin: 12em 7em; */
+  /* margin-top: 12em; */
   /* min-height: 100vh; */
   /* display: flex; */
   justify-content: center;
@@ -44,6 +45,7 @@ export default {
   font-family:'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
+  padding: 2em 1em 0em 1em;
   font-weight: 300;
   font-size: 100px;
   color: #35495e;

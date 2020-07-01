@@ -1,7 +1,7 @@
 <template>
   <div>
     <div >
-      <login v-if="currentComponent === 'login'" @sendStudentList = "currentComponent = $event" @sendId = "userId = $event" @notLecturer = "notLecturer = $event"/>
+      <login v-if="currentComponent === 'login'" :lecturer="true" @sendStudentList = "currentComponent = $event" @sendId = "userId = $event" @notLecturer = "notLecturer = $event"/>
       <studentList v-if="currentComponent === 'studentList'" :currentIdList="this.userId" />
     </div>
   </div>
@@ -10,6 +10,7 @@
 <script>
 import login from "~/components/login.vue"
 import studentList from "~/components/student-list.vue";
+
 export default {
   components: {
     studentList,

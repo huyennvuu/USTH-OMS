@@ -58,6 +58,7 @@ export default {
         console.log("this is error:",error.data);
       });
       this.$emit('sendLogin', 'login');
+      this.$message.success('You are registed! Log in now');
     },
   }
 }
@@ -65,8 +66,8 @@ export default {
 
 <style scoped>
   .container {
-    width: 60vh;
-    margin: 50px 370px 100px 500px;
+    width: 53vh;
+    margin: 8em 36em;
     min-height: 70vh;
     display: block;
     justify-content: center;

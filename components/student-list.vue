@@ -49,8 +49,8 @@
         </template>
       </el-table-column>
     </el-table>
-      <GEF v-if="currentComponent === 'GEF'" :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate" @sendEEF= "currentComponent = $event" @sendId= "currentIdEnglishEvaluate = $event" />
-      <EEF v-if="currentComponent === 'EEF'" :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate" />
+      <GEF v-if="currentComponent === 'GEF'" :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate" :currentEmployeeId="this.currentEmployeeId" />
+      <EEF v-if="currentComponent === 'EEF'" :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate" :currentEmployeeId="this.currentEmployeeId" />
       <studentDetail v-if="currentComponent === 'studentDetail'" :currentIdDetail="this.currentIdDetail" />
   </div>
 </template>
@@ -93,6 +93,7 @@ export default {
       currentIdEnglishEvaluate: "",
       currentComponent: "",
       currentJuryId: "",
+      currentEmployeeId: ""
     };
   },
   
@@ -103,6 +104,8 @@ export default {
 
   mounted: function() {
     this.getJuryId()
+    this.isEnglishTeacher()
+    this.getEmployeeId()
   },
   
   watch: { 
@@ -135,8 +138,13 @@ export default {
     },
 
     handleEvaluate(index, row) {
-      this.currentComponent = "GEF";
-      this.currentIdGeneralEvaluate = row.id;
+      if( this.isEnglishTeacher == '1'){
+        this.currentComponent = "EEF";
+        this.currentIdEnglishEvaluate = row.id;   
+      }else{
+        this.currentComponent = "GEF";
+        this.currentIdGeneralEvaluate = row.id;
+      }
     },
 
     async getJuryId() {
@@ -156,25 +164,60 @@ export default {
         console.error(error);
       }
     },
+
+    async getEmployeeId() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getEmployeeId",
+          {
+            params: {
+              currentIdList: this.currentIdList
+            }
+          }
+        );
+        console.log(response);
+
+        this.currentEmployeeId = response.data.currentEmployeeId[0].id;
+        console.log("This is this.currentEmployeeId", this.currentEmployeeId);
+
+
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    async isEnglishTeacher() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=isEnglishTeacher",
+          {
+            params: {
+              currentIdList: this.currentIdList
+            }
+          }
+        );
+
+        this.isEnglishTeacher = response.data.isEnglishTeacher[0].is_english_teacher
+        console.log("Is this English teacher?", this.isEnglishTeacher);
+
+      } catch (error) {
+        console.error(error);
+      }
+    },
   }
 };
 </script>
 
 <style scoped>
 .student-table {
-  margin: 50px 100px 50px 100px;
+  margin: 50px 150px 50px 150px;
   text-align: center;
   box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 30px 0px 60px;
-}
-
-.ava {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50% !important;
+  padding: 10px 30px 0px 90px;
 }
 
 .center {
   text-align: center;
 }
+
 </style>

@@ -422,7 +422,7 @@ export default {
     currentIdDetail: {
       type: String,
       default: "0"
-    }
+    },
   },
   data() {
     return {
@@ -529,6 +529,7 @@ export default {
   },
 
   mounted: function(){
+    this.currentId = this.currentIdDetail;
     this.getStudentData();
   },
 
@@ -539,6 +540,11 @@ export default {
     },
     address_id: function(value){
       this.getAddressData();
+    },
+    getPdf: function(value){
+      if (this.getPdf == 'true'){
+        window.print()
+      }
     }
   },
 
@@ -553,15 +559,15 @@ export default {
             }
           }
         );
-        console.log("This is studentData response",response);
+        //console.log("This is studentData response",response);
         // console.log(currentId);
 
         this.studentData = response.data.studentData[0]
         this.student_id = response.data.studentData[0].id
         this.address_id = response.data.studentData[0].address_id
 
-        console.log("This is student id:", this.student_id)
-        console.log("This is studentData: ", this.studentData);
+        //console.log("This is student id:", this.student_id)
+        //console.log("This is studentData: ", this.studentData);
         //console.log("This is student's name:", this.studentData.full_name);
       } catch (error) {
         console.error(error);
@@ -577,10 +583,10 @@ export default {
             }
           }
         );
-        console.log("This is AddressData response",response);
+        //console.log("This is AddressData response",response);
 
         this.addressData = response.data.addressData[0];
-        console.log("This is addressData: ", this.addressData);
+        //console.log("This is addressData: ", this.addressData);
       } catch (error) {
         console.error(error);
       }
@@ -595,10 +601,10 @@ export default {
             }
           }
         );
-        console.log("This is AcademicHistoryData: ",response);
+        //console.log("This is AcademicHistoryData: ",response);
 
         this.academicHistoryData = response.data.academicHistoryData[0];
-        console.log("This is academicHistoryData: ", this.academicHistoryData);
+        //console.log("This is academicHistoryData: ", this.academicHistoryData);
       } catch (error) {
         console.error(error);
       }
@@ -626,12 +632,12 @@ export default {
               }
             })
         var programResponse = response.data
-        console.log("this is response program: ",programResponse);
+        //console.log("this is response program: ",programResponse);
         this.applicationData.first_training_program_id = programResponse.trainingProgram[0].name;
         this.applicationData.second_training_program_id = programResponse.trainingProgram[1].name;
         this.applicationData.third_training_program_id = programResponse.trainingProgram[2].name;
         this.applicationData.fourth_training_program_id = programResponse.trainingProgram[3].name;
-        console.log("This is applicationData: ", this.applicationData); 
+        //console.log("This is applicationData: ", this.applicationData); 
 
       } catch (error) {
         console.error(error);
@@ -680,7 +686,7 @@ h2 {
   font-size: 18px;
   color: #606266;
   text-align: center;
-  margin-left: 7em;
+  margin-left: 10em;
 }
 
 .part-title{
