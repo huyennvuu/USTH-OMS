@@ -566,9 +566,9 @@ export default {
         this.student_id = response.data.studentData[0].id
         this.address_id = response.data.studentData[0].address_id
 
-        //console.log("This is student id:", this.student_id)
-        //console.log("This is studentData: ", this.studentData);
-        //console.log("This is student's name:", this.studentData.full_name);
+        console.log("This is student id:", this.student_id)
+        console.log("This is studentData: ", this.studentData)
+        console.log("This is student's name:", this.studentData.full_name);
       } catch (error) {
         console.error(error);
       }
@@ -579,7 +579,7 @@ export default {
           "http://localhost/process.php?action=getAddressData",
           {
             params: {
-              address_id: this.address_id
+              student_id: this.student_id
             }
           }
         );

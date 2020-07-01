@@ -881,10 +881,9 @@ export default {
         home_phone: "",
         parent_phone: "",
         marital_status: "",
-        address_id: "4",
         user_id: "",
         jury_id: "",
-        wave_id: ""
+        wave_id: "",
         },
 
         addressData: {
@@ -892,7 +891,8 @@ export default {
           street: "",
           ward: "",
           district: "",
-          province: ""
+          province: "",
+          student_id: ""
         },
 
         academicHistoryData: {
@@ -1044,29 +1044,6 @@ export default {
       });
     },
 
-    // submitForm(){
-    //   let formData = new FormData();
-    //     formData.append('file', this.file);
-
-    //       this.axios.post('http://localhost:3000/api.php',
-    //         formData,
-    //           {
-    //             headers: {
-    //               'Content-Type': 'multipart/form-data'
-    //             }
-    //           }
-    //         ).then(function(data){
-    //           console.log(data.data);
-    //         })
-    //         .catch(function(){
-    //           console.log('FAILURE!!');
-    //         });
-    // },
-
-    // onChangeFileUpload(){
-    //     this.file = this.$refs.file.files[0];
-    // },
-
     async getStudentId() {
       try {
         const response = await this.$axios.get(
@@ -1080,6 +1057,7 @@ export default {
         //console.log("This student id is:", response.data.studentId[0].id)
         this.academicHistoryData.student_id = response.data.studentId[0].id;
         this.applicationData.student_id = response.data.studentId[0].id;
+        this.addressData.student_id = response.data.studentId[0].id;
       } catch (error) {
         console.error(error);
       }
