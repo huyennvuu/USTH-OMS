@@ -780,6 +780,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: {
     currentIdAdmission: {
@@ -790,7 +791,7 @@ export default {
 
   data() {
     return {
-
+      overall_student_id: "",
       labelPosition: "top",
       options:[{
         value: '1',
@@ -952,7 +953,79 @@ export default {
     this.studentData.user_id = this.currentIdAdmission
   },
 
+  watch: {
+    overall_student_id: function(value){
+      this.AddAddress()
+      this.AddAcademicHistory()
+      this.AddApplicationInfo()
+      this.sendDetail()
+    }
+  },
+
   methods: {
+  
+    sendDetail(){
+      this.$emit('sendDetail', 'studentDetail');
+    },
+    
+    AddAddress() {
+
+      this.$axios.post("http://localhost:80/process.php?action=AddAddress", this.addressData)
+      .then(function (response) {
+        //console.log("this is response Address: ",response.data);
+      })
+      .catch(function (error) {
+        console.log("this is error of Address: ",error.data);
+      });
+    },
+
+    AddAcademicHistory() {
+
+      this.$axios.post("http://localhost:80/process.php?action=AddAcademicHistory", this.academicHistoryData)
+      .then(function (responcse) {
+
+        //console.log("this is response Academic History: ", response.data);
+      })
+      .catch(function (error) {
+        console.log("Full response: ", error);
+        console.log("this is error of Academic History: ",error.data);
+      });
+    },
+
+    AddApplicationInfo() {
+
+      this.$axios.post("http://localhost:80/process.php?action=AddApplicationInformation", this.applicationData)
+      .then(function (response) {
+        //console.log("this is response Application: ",response.data);
+      })
+      .catch(function (error) {
+        console.log("this is error of Application: ",error.data);
+      });
+    },
+
+
+    async getStudentId() {
+      try {
+        console.log("This is getting student id")
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getStudentId",
+          {
+            params: {
+              currentIdAdmission: this.currentIdAdmission
+            }
+          }
+        );
+        // console.log(response)
+        console.log("This student id is:", response.data.studentId[0].id)
+        this.overall_student_id = response.data.studentId[0].id
+        this.academicHistoryData.student_id = response.data.studentId[0].id
+        this.applicationData.student_id = response.data.studentId[0].id
+        this.addressData.student_id = response.data.studentId[0].id
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     async getWave() {
       try {
         const response = await this.$axios.get(
@@ -968,75 +1041,18 @@ export default {
     },
 
     AddStudent() {
-
-      this.$axios.post("http://localhost:80/process.php?action=AddStudent", this.studentData)
-      .then(function (response) {
-        //console.log("this is response Student: ",response.data);
+      var promisfunction = new Promise ((res,rej)=>{
+        this.$axios.post("http://localhost:80/process.php?action=AddStudent", this.studentData)
+        .then(function (response) {
+          //console.log("this is response Student: ",response.data);
+        }).then(()=>{
+          this.getStudentId()
+        })
       })
-      .catch(function (error) {
-        console.log("this is error: ",error.data);
-      });
-    },
-
-    AddAddress() {
-
-      this.$axios.post("http://localhost:80/process.php?action=AddAddress", this.addressData)
-      .then(function (response) {
-        //console.log("this is response Address: ",response.data);
-      })
-      .catch(function (error) {
-        console.log("this is error of Address: ",error.data);
-      });
-    },
-    AddAcademicHistory() {
-
-      this.$axios.post("http://localhost:80/process.php?action=AddAcademicHistory", this.academicHistoryData)
-      .then(function (responcse) {
-
-        //console.log("this is response Academic History: ", response.data);
-      })
-      .catch(function (error) {
-        console.log("Full response: ", error);
-        console.log("this is error of Academic History: ",error.data);
-      });
-    },
-    AddApplicationInfo() {
-
-      this.$axios.post("http://localhost:80/process.php?action=AddApplicationInformation", this.applicationData)
-      .then(function (response) {
-        //console.log("this is response Application: ",response.data);
-      })
-      .catch(function (error) {
-        console.log("this is error of Application: ",error.data);
-      });
-    },
-
-    async getStudentId() {
-      try {
-        //console.log("This is user id",this.currentIdAdmission )
-        const response = await this.$axios.get(
-          "http://localhost/process.php?action=getStudentId",
-          {
-            params: {
-              currentIdAdmission: this.currentIdAdmission
-            }
-          }
-        );
-        // console.log(response)
-        console.log("This student id is:", response.data.studentId[0].id)
-        this.academicHistoryData.student_id = response.data.studentId[0].id;
-        this.applicationData.student_id = response.data.studentId[0].id;
-        this.addressData.student_id = response.data.studentId[0].id;
-      } catch (error) {
-        console.error(error);
       }
     },
 
-    sendDetail(){
-      this.$emit('sendDetail', 'studentDetail');
-    },
   }
-}
 </script>
 
 <style scoped>
