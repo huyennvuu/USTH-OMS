@@ -27,50 +27,7 @@
       :model="studentData"
       label-width="100px"
     >
-      <!-- Add ava -->
-      <!-- <el-form-item> -->
-      <!-- <el-upload
-          action="#"
-          list-type="picture-card"
-          :auto-upload="false"
-          style="text-align:center"
-        >
-          <i slot="default" class="el-icon-plus"></i>
-          <div slot="file" slot-scope="{ file }">
-            <img
-              class="el-upload-list__item-thumbnail"
-              :src="file.url"
-              alt=""
-            />
-            <span class="el-upload-list__item-actions">
-              <span
-                class="el-upload-list__item-preview"
-                @click="handlePictureCardPreview(file)"
-              >
-                <i class="el-icon-zoom-in"></i>
-              </span>
-              <span
-                v-if="!disabled"
-                class="el-upload-list__item-delete"
-                @click="handleDownload(file)"
-              >
-                <i class="el-icon-download"></i>
-              </span>
-              <span
-                v-if="!disabled"
-                class="el-upload-list__item-delete"
-                @click="handleRemove(file)"
-              >
-                <i class="el-icon-delete"></i>
-              </span>
-            </span>
-          </div>
-        </el-upload>
-        <! <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="">
-        </el-dialog> -->
-      <!-- </el-form-item> -->
-
+      
       <!-- Input Information -->
       <el-form-item label="1. Họ và tên/ Full name:">
         <el-input v-model="studentData.full_name"></el-input>
@@ -87,7 +44,7 @@
       </el-form-item>
 
       <el-form-item label="3. Ngày sinh/ Date of birth:">
-        <el-input v-model="studentData.dob"></el-input>
+        <el-input v-model="studentData.DOB"></el-input>
       </el-form-item>
 
       <el-form-item label="4. Giới tính/ Gender">
@@ -98,7 +55,7 @@
       </el-form-item>
 
       <el-form-item label="5. Nơi sinh/ Place of birth:">
-        <el-input v-model="studentData.pob"></el-input>
+        <el-input v-model="studentData.POB"></el-input>
       </el-form-item>
 
       <el-form-item label="6. Quốc tịch / Nationality:">
@@ -379,34 +336,12 @@
         19. Các thành tích nổi bật (học bổng, giải thưởng …)/ Awards and
         Distinctions:
       </p>
-      <!-- <el-upload></el-upload>
-      <input
-        type="file"
-        id="file"
-        ref="file"
-        v-on:change="onChangeFileUpload()"
-      />
-      <button v-on:click="submitForm()">Upload</button>
-      
-      <br /><br /> -->
+      <div>
+        <input type="file" id="file" ref="file" />
+        <button type="button" @click='uploadFile()' >Upload file</button>
+      </div>
 
-      <!-- <div class="upload-container">
-        <el-upload
-          class="upload-demo"
-          action="https://jsonplaceholder.typicode.com/posts/"
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          :before-remove="beforeRemove"
-          multiple
-          :limit="3"
-          :on-exceed="handleExceed"
-          :file-list="fileList">
-          <el-button class="button--grey">Click to upload</el-button>
-          <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
-        </el-upload>
-        </div> -->
-
-      <p class="input-title">20. Chứng chỉ (nếu có)/ Certificates (if any):</p>
+      <p class="input-title">21. Chứng chỉ (nếu có)/ Certificates (if any):</p>
       <table style="padding-left: 7em">
         <tr>
           <td class="input-title title-lang">Ngoại ngữ/ Languages</td>
@@ -462,7 +397,7 @@
       label-width="100px"
     >
       <p class="input-title">
-        24. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công
+        22. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công
         nghệ Hà Nội chưa?/ Have you ever applied for admissions to University of
         Science and Technology of Hanoi (USTH) before?
       </p>
@@ -485,7 +420,7 @@
 
       <br /><br /><br />
       <p class="input-title">
-        25. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/
+        23. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/
         Have you ever registered for any University else before?
       </p>
       <br />
@@ -521,7 +456,7 @@
 
       <br /><br /><br />
       <p class="input-title">
-        26. Thông tin về kỳ thi THPT Quốc Gia dành cho thí sinh thi tốt nghiệp
+        24. Thông tin về kỳ thi THPT Quốc Gia dành cho thí sinh thi tốt nghiệp
         trước năm 2020/ National Exam Information for student graduated before
         2020:(thí sinh đang học lớp 12 hoặc theo học chương trình quốc tế không
         phải điền mục này/Student who is studying in grade 12 or international
@@ -575,7 +510,7 @@
       </table>
 
       <p class="input-title" style="padding-left: 1em">
-        Ngành học xếp theo thứ tự ưu tiên/ Training Program in order of priority
+      25. Ngành học xếp theo thứ tự ưu tiên/ Training Program in order of priority
       </p>
       <div class="part-input">
         <p class="input-title">1<sup>st</sup>:</p>
@@ -661,117 +596,13 @@
         Engineering program must select Aeronautical Engineering program as the
         1 st priority.
       </p>
-
-      <br /><br />
-      <p class="input-title" style="text-align: center; font-weight: bold">
-        CAM KẾT CỦA ỨNG VIÊN/ CERTIFICATION OF ACCURACY
-      </p>
-      <div style="padding-top: 1em; text-align: center ">
-        <p class="input-title">
-          Tôi cam đoan rằng toàn bộ thông tin trong bản đăng ký đính kèm là hoàn
-          toàn chính xác và đầy đủ, và có thể được kiểm chứng bằng văn bản
-          gốc.<br />
-        </p>
-        <p class="input-title">
-          I certify that all information included with the application is
-          accurate and complete, and may be verified with an original
-          document/official source.
-        </p>
-      </div>
-
-      <table>
-        <tr>
-          <td>
-            <div style="padding: 2em">
-              <p class="input-title">
-                <strong>LƯU Ý:</strong> Xin lưu ý rằng ĐHKHCNHN hoàn toàn có
-                quyền từ chối không cho sinh viên nhập học hoặc chấm dứt việc
-                học tập của sinh viên nếu phát hiện anh/chị cung cấp thông tin
-                không chính xác hoặc thiếu sót. <br />
-                Nếu được trúng tuyển, thí sinh sẽ bắt buộc phải cung cấp đầy đủ
-                các hồ sơ yêu cầu <br />
-              </p>
-            </div>
-          </td>
-          <td>
-            <p class="input-title">
-              <strong>NOTE: </strong> Please note that USTH reserves the right
-              to refuse admission or to terminate a student’s attendance should
-              it be discovered that he/she has made a false statement or has
-              omitted significant information. <br />
-              If you are selected, you will be required to provide evidence
-              proof of your qualifications. <br />
-            </p>
-          </td>
-        </tr>
-      </table>
-
-      <p class="input-title" style="text-align: center">
-        Đơn đăng ký dự tuyển và hồ sơ đăng ký dự tuyển nộp trực tiếp hoặc gửi
-        qua đường bưu điện tại địa chỉ <br />
-        Application Form and Application Dossier shall be delivered in person or
-        by post to:<br />
-        <strong
-          >Phòng Quản lý Đào tạo - TRƯỜNG ĐẠI HỌC KHOA HỌC VÀ CÔNG NGHỆ HÀ NỘI
-          (USTH)</strong
-        ><br />
-        Phòng 102, Tầng 1, Tòa nhà A21, Viện Hàn Lâm Khoa học và Công nghệ Việt
-        Nam<br />
-        <br />
-        18 Hoàng Quốc Việt, Cầu Giấy, Hà Nội <br />
-        Tel. / ĐT: +84-24-3791 7748<br />
-        Hotline: +84- 8-8855 7748<br />
-        Các hồ sơ không đầy đủ sẽ không được xem xét/ Incomplete applications
-        will not be considered
-      </p>
-
-      <p
-        class="input-title"
-        style="text-align: center; padding-top: 3em; padding-bottom: 1em; font-weight: bold"
-      >
-        APPLICATION CHECKLIST / HỒ SƠ ỨNG TUYỂN BAO GỒM
-      </p>
-      <p class="input-title" style="padding-left: 2em">
-        o Đơn đăng ký dự tuyển năm 2020, theo mẫu tải tại website của Trường
-        điền đầy đủ thông tin và có dán ảnh 4x6/ Application Form for Bachelor
-        Course Intake 2020 (available on USTH website): filled in and signed
-        with 4x6 portrait photo attached <br />
-        o Thư trình bày mục đích, nguyện vọng/ Motivation letter <br />
-        o Bản sao chứng minh thư nhân dân, căn cước hoặc hộ chiếu còn giá trị sử
-        dụng/ Copy of ID card or password <br />
-        o Bản sao học bạ THPT. Điểm số không theo thang điểm 10 cần nộp một văn
-        bản của cơ quan có thẩm quyền giải thích thang điểm áp dụng và/hoặc cách
-        tính tương đương sang thang điểm 10/ Certified copy of High School
-        Transcript. If the grading system is different than the 0-10 scale
-        applied in Vietnam, a document explaining the applied grading system is
-        required;<br />
-        o Bảng điểm học kỳ 1 lớp 12 (đồi với các thí sinh đang học lớp 12 và sẽ
-        tốt nghiệp THPT năm 2020)/ Transcipt of 1st semester – grade 12 (for
-        high school student at grade 12 and graduated in 2020) <br />
-        o Bản sao giấy báo kết quả thi THPT Quốc gia (đối với thí sinh đăng ký
-        dự tuyển sau kỳ thi THPT Quốc gia hoặc đã tốt nghiệp THPT trước năm
-        2020)/ Copy Official Certificate of National Exam Result (for Applicants
-        graduated before 2020 or Applicants graduated in 2020 and interviewed
-        after the National Exam)<br />
-        o Bản sao bằng tốt nghiệp THPT/Certified copy of High School Diploma
-        <br />
-        o Giấy xác nhận sinh viên (cho thí sinh đang là sinh viên các trường Đại
-        học khác)/ Student Certificate (for student of other university) <br />
-        o Bản sao chứng chỉ đánh giá năng lực Tiếng Anh, bằng khen, bằng chứng
-        nhận thành tích học tập, học bổng, thư giới thiệu, v.v. (nếu có)/
-        Certificate of merits, certificate of English, and letter of
-        recommandation (if any)..<br />
-      </p>
       <el-form-item>
         <div class="container-button">
           <!-- sendDetail() -->
           <el-button
             class="button--grey"
-            @click="
-              AddStudent()
-              
-            "
-            >Submit</el-button
+            @click="AddStudent()"
+            >Next</el-button
           >
         </div>
       </el-form-item>
@@ -781,6 +612,7 @@
 
 <script>
 import axios from 'axios'
+
 export default {
   props: {
     currentIdAdmission: {
@@ -792,6 +624,7 @@ export default {
   data() {
     return {
       overall_student_id: "",
+      check_student_id: "",
       labelPosition: "top",
       options:[{
         value: '1',
@@ -858,9 +691,9 @@ export default {
         id_number: "",
         id_date: "",
         id_place: "",
-        dob: "",
+        DOB: "",
         gender: "",
-        pob: "",
+        POB: "",
         nationality: "",
         ethnicity: "",
         mail_address: "",
@@ -928,29 +761,34 @@ export default {
           usth_applied: "",
           usth_applied_year: "",
           usth_applied_wave: "",
+
           diff_university_applied: "",
           diff_university_applied_year: "",
           diff_university_applied_mark: "",
           diff_university_applied_group: "",
           diff_university_applied_name: "",
+
           national_exam_student_number: "",
           national_exam_math_result: "",
           national_exam_physics_result: "",
           national_exam_chemistry_result: "",
           national_exam_biology_result: "",
           national_exam_english_result: "",
+          
           first_training_program_id: "",
           second_training_program_id: "",
           third_training_program_id: "",
           fourth_training_program_id: "",
-          motivation_letter: "",
+          motivation_letter: ""
         }
       }
     },
   mounted: function() {
     // console.log("This is user id", this.currentIdAdmission)
+    this.checkStudentId()
     this.getWave()
     this.studentData.user_id = this.currentIdAdmission
+    
   },
 
   watch: {
@@ -958,15 +796,114 @@ export default {
       this.AddAddress()
       this.AddAcademicHistory()
       this.AddApplicationInfo()
-      this.sendDetail()
+      this.sendUpload()    
+    },
+    check_student_id: function(value){
+      this.getStudentData()
+      this.getAddressData()
+      this.getAcademicHistoryData()
+      this.getApplicationData()
     }
   },
 
   methods: {
-  
-    sendDetail(){
-      this.$emit('sendDetail', 'studentDetail');
+    async getStudentData() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getStudentData",
+          {
+            params: {
+              currentId:this.currentIdAdmission
+            }
+          }
+        );
+        // console.log(currentId);
+
+        this.studentData = response.data.studentData[0]
+        this.student_id = response.data.studentData[0].id
+
+        console.log("This is studentData: ", this.studentData)
+      } catch (error) {
+        console.error(error);
+      }
     },
+    async getAddressData() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getAddressData",
+          {
+            params: {
+              student_id: this.check_student_id
+            }
+          }
+        );
+        // console.log("This is AddressData response",response);
+
+        this.addressData = response.data.addressData[0];
+        //console.log("This is addressData: ", this.addressData);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getAcademicHistoryData() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getAcademicHistoryData",
+          {
+            params: {
+              student_id: this.check_student_id
+            }
+          }
+        );
+        //console.log("This is AcademicHistoryData: ",response);
+
+        this.academicHistoryData = response.data.academicHistoryData[0];
+        //console.log("This is academicHistoryData: ", this.academicHistoryData);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getApplicationData() {
+      try {
+        let response = await this.$axios.get(
+          "http://localhost/process.php?action=getApplicationData",
+          {
+            params: {
+              student_id: this.check_student_id
+            }
+          }
+        )
+        this.applicationData = response.data.applicationData[0];
+        var application = response.data.applicationData[0]
+          response = await this.$axios.get(
+            "http://localhost:80/process.php?action=getTraningProgram", 
+            {
+              params: {
+              'firstId': application.first_training_program_id,
+              'secondId': application.second_training_program_id, 
+              'thirdId': application.third_training_program_id, 
+              'fourthId': application.fourth_training_program_id,
+              }
+            })
+        var programResponse = response.data
+        //console.log("this is response program: ",programResponse);
+        this.applicationData.first_training_program_id = programResponse.trainingProgram[0].name;
+        this.applicationData.second_training_program_id = programResponse.trainingProgram[1].name;
+        this.applicationData.third_training_program_id = programResponse.trainingProgram[2].name;
+        this.applicationData.fourth_training_program_id = programResponse.trainingProgram[3].name;
+        //console.log("This is applicationData: ", this.applicationData); 
+
+      } catch (error) {
+        console.error(error);
+      }
+      
+    },
+
+    sendUpload(){
+      this.$emit('sendUpload', 'uploadPDF');
+    },
+
+    // SUBMIT DATA
     
     AddAddress() {
 
@@ -1004,9 +941,29 @@ export default {
     },
 
 
+    //GET DATA
+
+    async checkStudentId(){
+      try {
+        //console.log("This is getting student id")
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getStudentId",
+          {
+            params: {
+              currentIdAdmission: this.currentIdAdmission
+            }
+          }
+        );
+        //console.log("This check student id is:", response.data.studentId[0].id)
+        this.check_student_id = response.data.studentId[0].id
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
     async getStudentId() {
       try {
-        console.log("This is getting student id")
+        //console.log("This is getting student id")
         const response = await this.$axios.get(
           "http://localhost/process.php?action=getStudentId",
           {
@@ -1016,7 +973,7 @@ export default {
           }
         );
         // console.log(response)
-        console.log("This student id is:", response.data.studentId[0].id)
+        //console.log("This student id is:", response.data.studentId[0].id)
         this.overall_student_id = response.data.studentId[0].id
         this.academicHistoryData.student_id = response.data.studentId[0].id
         this.applicationData.student_id = response.data.studentId[0].id
@@ -1050,8 +1007,7 @@ export default {
         })
       })
       }
-    },
-
+    }
   }
 </script>
 

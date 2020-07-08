@@ -295,6 +295,7 @@ export default {
           console.log("this is error: ", error.data);
         })
       this.$message.success('General evaluation form submited!');
+      //this.generalEvaluationData = ""
 
     },
   }

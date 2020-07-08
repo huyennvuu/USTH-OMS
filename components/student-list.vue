@@ -1,57 +1,83 @@
 <template>
   <div class="student-table">
-    <el-table
-      :data="tableData.filter(data => !search || data.full_name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%"
-      class="center"
-    >
-      <el-table-column prop="id" label="ID" width="60" class="center">
-      </el-table-column>
-      <!-- <el-table-column 
-        prop="imgsrc"
-        label="Avatar"
-        width="80">
-        <img src="~/static/img/user.png" width="42" height="42" class="ava">
-      </el-table-column> -->
-      <el-table-column prop="full_name" label="Full Name" width="190">
-      </el-table-column>
-      <el-table-column prop="school_name" label="High School" width="190">
-      </el-table-column>
-      <el-table-column
-        prop="training_program"
-        label="Training Program"
-        width="170"
-      >
-      </el-table-column>
-      <el-table-column prop="dob" label="Date of birth" width="140">
-      </el-table-column>
-      <el-table-column prop="gender" label="Gender" width="110">
-      </el-table-column>
-      <el-table-column width="240">
-        <template slot="header" slot-scope="scope">
-          <el-input v-model="search" size="mini" placeholder="Type to search" />
-        </template>
-        <template slot-scope="scope">
-          <el-button
-            style="margin-left: 12px"
-            size="medium"
-            type="info"
-            plain
-            @click="handleDetail(scope.$index, scope.row)"
-            >Detail</el-button
+    <el-row>
+      <el-col :span="24">
+        <el-table
+          :data="
+            tableData.filter(
+              data =>
+                !search ||
+                data.full_name.toLowerCase().includes(search.toLowerCase())
+            )
+          "
+          style="width: 100%"
+          class="center"
+        >
+          <el-table-column prop="id" label="ID" width="60" align="center"> </el-table-column>
+          <!-- <el-table-column 
+            prop="imgsrc"
+            label="Avatar"
+            width="80">
+            <img src="~/static/img/user.png" width="42" height="42" class="ava">
+          </el-table-column> -->
+          <el-table-column prop="full_name" label="Full Name" width="180">
+          </el-table-column>
+          <el-table-column prop="school_name" label="High School" width="180">
+          </el-table-column>
+          <el-table-column
+            prop="training_program"
+            label="Training Program"
+            width="170"
           >
-          <el-button
-            size="medium"
-            type="primary"
-            @click="handleEvaluate(scope.$index, scope.row)"
-            >Evaluate</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
-      <GEF v-if="currentComponent === 'GEF'" :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate" :currentEmployeeId="this.currentEmployeeId" />
-      <EEF v-if="currentComponent === 'EEF'" :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate" :currentEmployeeId="this.currentEmployeeId" />
-      <studentDetail v-if="currentComponent === 'studentDetail'" :currentIdDetail="this.currentIdDetail" />
+          </el-table-column>
+          <el-table-column prop="dob" label="Date of birth" width="140">
+          </el-table-column>
+          <el-table-column prop="gender" label="Gender" width="110">
+          </el-table-column>
+          <el-table-column width="240">
+            <template slot="header" slot-scope="scope">
+              <el-input
+                v-model="search"
+                size="mini"
+                placeholder="Type to search"
+              />
+            </template>
+            <template slot-scope="scope">
+              <el-button
+                style="margin-left: 12px"
+                size="medium"
+                type="info"
+                plain
+                @click="handleDetail(scope.$index, scope.row)"
+                >Detail</el-button
+              >
+              <el-button
+                size="medium"
+                type="primary"
+                @click="handleEvaluate(scope.$index, scope.row)"
+                >Evaluate</el-button
+              >
+            </template>
+          </el-table-column>
+        </el-table>
+      </el-col>
+      <el-col :span="24">
+        <GEF
+          v-if="currentComponent === 'GEF'"
+          :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate"
+          :currentEmployeeId="this.currentEmployeeId"
+        />
+        <EEF
+          v-if="currentComponent === 'EEF'"
+          :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate"
+          :currentEmployeeId="this.currentEmployeeId"
+        />
+        <studentDetail
+          v-if="currentComponent === 'studentDetail'"
+          :currentIdDetail="this.currentIdDetail"
+        />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -61,7 +87,7 @@
 <script>
 import GEF from "~/components/general-evaluation-form.vue";
 import EEF from "~/components/english-evaluation-form.vue";
-import studentDetail from "~/components/student-detail.vue"
+import studentDetail from "~/components/student-detail.vue";
 export default {
   //user id
   props: {
@@ -87,7 +113,7 @@ export default {
           gender: ""
         }
       ],
-      search: '',
+      search: "",
       currentIdDetail: "",
       currentIdGeneralEvaluate: "",
       currentIdEnglishEvaluate: "",
@@ -96,20 +122,20 @@ export default {
       currentEmployeeId: ""
     };
   },
-  
+
   // created:function() {
   //     this.studentData.user_id = this.currentIdList
   //     this.getStudentId()
   // },
 
   mounted: function() {
-    this.getJuryId()
-    this.isEnglishTeacher()
-    this.getEmployeeId()
+    this.getJuryId();
+    this.isEnglishTeacher();
+    this.getEmployeeId();
   },
-  
-  watch: { 
-    currentJuryId: function(value){
+
+  watch: {
+    currentJuryId: function(value) {
       this.listStudent();
     }
   },
@@ -124,9 +150,9 @@ export default {
             }
           }
         );
-        console.log(response)
+        console.log(response);
 
-        this.tableData = response.data.studentList
+        this.tableData = response.data.studentList;
       } catch (error) {
         console.error(error);
       }
@@ -138,10 +164,10 @@ export default {
     },
 
     handleEvaluate(index, row) {
-      if( this.isEnglishTeacher == '1'){
+      if (this.isEnglishTeacher == "1") {
         this.currentComponent = "EEF";
-        this.currentIdEnglishEvaluate = row.id;   
-      }else{
+        this.currentIdEnglishEvaluate = row.id;
+      } else {
         this.currentComponent = "GEF";
         this.currentIdGeneralEvaluate = row.id;
       }
@@ -179,8 +205,6 @@ export default {
 
         this.currentEmployeeId = response.data.currentEmployeeId[0].id;
         console.log("This is this.currentEmployeeId", this.currentEmployeeId);
-
-
       } catch (error) {
         console.error(error);
       }
@@ -197,27 +221,25 @@ export default {
           }
         );
 
-        this.isEnglishTeacher = response.data.isEnglishTeacher[0].is_english_teacher
+        this.isEnglishTeacher =
+          response.data.isEnglishTeacher[0].is_english_teacher;
         console.log("Is this English teacher?", this.isEnglishTeacher);
-
       } catch (error) {
         console.error(error);
       }
-    },
+    }
   }
 };
 </script>
 
 <style scoped>
+tel-table-columnd{
+  text-align: center;
+}
 .student-table {
-  margin: 50px 150px 50px 150px;
-  text-align: center;
+  margin: 3em 5em;
+  align-content: center;
   box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.1);
-  padding: 10px 30px 0px 90px;
+  padding: 0.5em;
 }
-
-.center {
-  text-align: center;
-}
-
 </style>

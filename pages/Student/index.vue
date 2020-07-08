@@ -13,14 +13,21 @@
     <studentAddmission 
       v-if="currentComponent === 'studentAddmission'" 
       :currentIdAdmission="this.userId" 
-      @sendDetail = "currentComponent = $event" 
+      @sendUpload = "currentComponent = $event" 
     />
     <div v-if="currentComponent === 'studentDetail'" id="printPart" > 
       <studentDetail 
         :currentIdDetail="this.userId"
+        :showDetail="this.showDetail"
       />
       <button v-show="this.button == 'true'" class="button--grey" @click=" hideButton()"> export PDF </button>
     </div>
+    <uploadPDF 
+      v-if="currentComponent === 'uploadPDF'"
+      :currentIdUpload="this.userId"
+      @sendDetail = "currentComponent = $event"  
+      @showDetail = "showDetail = $event"  
+    />
   </div>
 </template>
 
@@ -29,12 +36,15 @@ import studentAddmission from "~/components/addmission-form.vue"
 import studentDetail from "~/components/student-detail.vue"
 import login from "~/components/login.vue"
 import register from "~/components/register.vue"
+import uploadPDF from "~/components/uploadStudentPdf.vue"
+
 export default {
   components:{
     studentAddmission,
     studentDetail,
     login,
-    register
+    register,
+    uploadPDF
   },
   data: function() {
     return {
@@ -43,6 +53,7 @@ export default {
       username: "",
       button: "true",
       print: "",
+      showDetail:""
     };
   },
 

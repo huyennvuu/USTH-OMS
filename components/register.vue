@@ -66,8 +66,8 @@ export default {
 
 <style scoped>
   .container {
-    width: 53vh;
-    margin: 8em 36em;
+    width: 60vh;
+    margin: 3.5em 28em;
     min-height: 70vh;
     display: block;
     justify-content: center;

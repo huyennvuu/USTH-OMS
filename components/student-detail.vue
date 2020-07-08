@@ -298,6 +298,7 @@
           </div>
       </div>
     <br>
+    <div v-if="showDetail == 'true'">
     <p class="input-title national_exam_table">
       <strong>Lưu ý/ Note: </strong> <br /><br />
       (*) Đối với các ngành không đủ số lượng sinh viên theo điều kiện mở ngành
@@ -413,6 +414,7 @@
       Certificate of merits, certificate of English, and letter of
       recommandation (if any)..<br /><br />
     </p>
+    </div>
   </div>
 </template>
 
@@ -423,7 +425,12 @@ export default {
       type: String,
       default: "0"
     },
+    showDetail: {
+      type: String,
+      default: "0"
+    }
   },
+  
   data() {
     return {
       currentId: "",
