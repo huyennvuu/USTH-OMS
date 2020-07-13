@@ -1,617 +1,623 @@
 <template>
-  <div class="container">
+  <div>
     <div>
-      <table>
-        <tr>
-          <td>
-            <img src="~/static/usth-logo.png" width="250" height="120" />
-          </td>
-          <td>
-            <p class="university-infor">
-              Trường Đại học Khoa học và Công nghệ Hà Nội
-              <br />
-              University of Science and Technology of Hanoi
-            </p>
-          </td>
-        </tr>
-      </table>
+      <user/>
     </div>
-    <h2 class="subtitle">
-      ĐƠN ĐĂNG KÝ DỰ TUYỂN HỆ CỬ NHÂN NĂM 2020
-      <br />
-      APPLICATION FORM FOR BACHELOR COURSES INTAKE 2020
-    </h2>
-    <el-form
-      :label-position="labelPosition"
-      ref="studentData"
-      :model="studentData"
-      label-width="100px"
-    >
-      
-      <!-- Input Information -->
-      <el-form-item label="1. Họ và tên/ Full name:">
-        <el-input v-model="studentData.full_name"></el-input>
-      </el-form-item>
-
-      <el-form-item label="2. Số chứng minh thư nhân dân/ ID number:">
-        <el-input v-model="studentData.id_number"></el-input>
-      </el-form-item>
-      <el-form-item label="Ngày cấp:">
-        <el-input v-model="studentData.id_date"></el-input>
-      </el-form-item>
-      <el-form-item label="Nơi cấp:">
-        <el-input v-model="studentData.id_place"></el-input>
-      </el-form-item>
-
-      <el-form-item label="3. Ngày sinh/ Date of birth:">
-        <el-input v-model="studentData.DOB"></el-input>
-      </el-form-item>
-
-      <el-form-item label="4. Giới tính/ Gender">
-        <el-radio-group v-model="studentData.gender">
-          <el-radio label="male">Nam/ Male</el-radio>
-          <el-radio label="female">Nữ/ Female</el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item label="5. Nơi sinh/ Place of birth:">
-        <el-input v-model="studentData.POB"></el-input>
-      </el-form-item>
-
-      <el-form-item label="6. Quốc tịch / Nationality:">
-        <el-input v-model="studentData.nationality"></el-input>
-      </el-form-item>
-
-      <el-form-item label="7. Dân tộc/ Ethnicity:">
-        <el-input v-model="studentData.ethnicity"></el-input>
-      </el-form-item>
-
-      <el-form-item
-        label="8. Địa chỉ gửi thư/ Current mailing address for correspondence:"
-      >
-        <el-input v-model="studentData.mail_address"></el-input>
-      </el-form-item>
-
-      <el-form-item label="9. Di động/Mobile phone:">
-        <el-input v-model="studentData.phone"></el-input>
-      </el-form-item>
-
-      <el-form-item label="11. Điện thoại/ Home phone:">
-        <el-input v-model="studentData.home_phone"></el-input>
-      </el-form-item>
-
-      <el-form-item label="12. Số di động của bố, mẹ/ Parent’s mobile No:">
-        <el-input v-model="studentData.parent_phone"></el-input>
-      </el-form-item>
-
-      <el-form-item label="13. Tình trạng hôn nhân/ Marital status:">
-        <el-radio-group v-model="studentData.marital_status">
-          <el-radio label="single">Độc thân/ Single</el-radio>
-          <el-radio label="married">Đã kết hôn/ Mariied</el-radio>
-        </el-radio-group>
-      </el-form-item>
-    </el-form>
-
-    <el-form
-      :label-position="labelPosition"
-      ref="addressData"
-      :model="addressData"
-      label-width="100px"
-    >
-      <p class="input-title">
-        14. Hộ khẩu thường trú/ Permanent Resident Address:
-      </p>
-      <el-form-item label="Số nhà/ House No.:">
-        <el-input v-model="addressData.house_number"></el-input>
-      </el-form-item>
-
-      <el-form-item label="Đường/ Street:">
-        <el-input v-model="addressData.street"></el-input>
-      </el-form-item>
-
-      <el-form-item label="Phường,xã/ Ward, commune:">
-        <el-input v-model="addressData.ward"></el-input>
-      </el-form-item>
-
-      <el-form-item label="Quận, huyện/ District:">
-        <el-input v-model="addressData.district"></el-input>
-      </el-form-item>
-
-      <el-form-item label="Tỉnh, thành phố/ Province:">
-        <el-input v-model="addressData.province"></el-input>
-      </el-form-item>
-    </el-form>
-
-    <el-form
-      :label-position="labelPosition"
-      ref="academicHistoryData"
-      :model="academicHistoryData"
-      label-width="100px"
-    >
-      <el-form-item label="15. Tên trường/ School name:">
-        <el-input v-model="academicHistoryData.school_name"></el-input>
-      </el-form-item>
-
-      <el-form-item label="16. Lớp/ Class:">
-        <el-input v-model="academicHistoryData.class"></el-input>
-      </el-form-item>
-
-      <el-form-item label="17. Địa chỉ đầy đủ/ Address:">
-        <el-input v-model="academicHistoryData.school_address"></el-input>
-      </el-form-item>
-
-      <p class="input-title">18. Kết quả học tập/ Result:</p>
-      <br />
-      <br />
-      <table>
-        <tr>
-          <td class="input-title title-lang">Kết quả (theo Học bạ) Result</td>
-          <td class="input-title title-lang">Xếp loại/ Grade</td>
-          <td class="input-title title-lang">ĐTB năm/ Final GPA</td>
-          <td class="input-title title-lang">Toán/ Maths</td>
-          <td class="input-title title-lang">Vật lý/ Physics</td>
-          <td class="input-title title-lang">Hóa học/ Chemistry</td>
-          <td class="input-title title-lang">Sinh học/ Biology</td>
-          <td class="input-title title-lang">Tin học/ IT</td>
-          <td class="input-title title-lang">Tiếng Anh/ English</td>
-        </tr>
-        <tr>
-          <td class="input-title table-lang ">Lớp 10/ Grade 10</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.grade_mark_10"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.gpa_mark_10"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.maths_mark_10"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.physics_mark_10"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.chemistry_mark_10"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.biology_mark_10"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.it_mark_10"></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.english_mark_10"
-              ></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="input-title table-lang ">Lớp 11/ Grade 11</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.grade_mark_11"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.gpa_mark_11"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.maths_mark_11"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.physics_mark_11"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.chemistry_mark_11"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.biology_mark_11"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.it_mark_11"></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.english_mark_11"
-              ></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-
-        <tr>
-          <td class="input-title table-lang ">Lớp 12/ Grade 12</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.grade_mark_12"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.gpa_mark_12"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.maths_mark_12"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.physics_mark_12"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.chemistry_mark_12"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.biology_mark_12"
-              ></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.it_mark_12"></el-input>
-            </el-form-item>
-          </td>
-
-          <td>
-            <el-form-item class="table-lang">
-              <el-input
-                v-model="academicHistoryData.english_mark_12"
-              ></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-      </table>
-
-      <br />
-      <p class="input-title">
-        * Với thí sinh sẽ tốt nghiệp năm 2020, nếu chưa có điểm trung bình năm
-        lớp 12, vui lòng điền và ghi rõ điểm trung bình học kỳ 1 năm lớp 12/ For
-        candidate who will graduate from high school in 2019, please clearly
-        mention the average mark of the 1st semester of Grade 12 in case the
-        mark for full year is not released
-      </p>
-      <br />
-
-      <!-- Update Adward -->
-      <p class="input-title">
-        19. Các thành tích nổi bật (học bổng, giải thưởng …)/ Awards and
-        Distinctions:
-      </p>
+    <div class="container">
       <div>
-        <input type="file" id="file" ref="file" />
-        <button type="button" @click='uploadFile()' >Upload file</button>
+        <table>
+          <tr>
+            <td>
+              <img src="~/static/usth-logo.png" width="250" height="120" />
+            </td>
+            <td>
+              <p class="university-infor">
+                Trường Đại học Khoa học và Công nghệ Hà Nội
+                <br />
+                University of Science and Technology of Hanoi
+              </p>
+            </td>
+          </tr>
+        </table>
       </div>
+      <h2 class="subtitle">
+        ĐƠN ĐĂNG KÝ DỰ TUYỂN HỆ CỬ NHÂN NĂM 2020
+        <br />
+        APPLICATION FORM FOR BACHELOR COURSES INTAKE 2020
+      </h2>
+      <el-form
+        :label-position="labelPosition"
+        ref="studentData"
+        :model="studentData"
+        label-width="100px"
+      >
+        
+        <!-- Input Information -->
+        <el-form-item label="1. Họ và tên/ Full name:">
+          <el-input v-model="studentData.full_name"></el-input>
+        </el-form-item>
 
-      <p class="input-title">21. Chứng chỉ (nếu có)/ Certificates (if any):</p>
-      <table style="padding-left: 7em">
-        <tr>
-          <td class="input-title title-lang">Ngoại ngữ/ Languages</td>
-          <td class="input-title title-lang">Chứng chỉ/ Certificate</td>
-          <td class="input-title title-lang">Điểm/Score</td>
-        </tr>
-        <tr>
-          <td class="input-title table-lang ">Tiếng Anh/ English</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.english_certi"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.english_score"></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-        <tr>
-          <td class="input-title table-lang">French/ Tiếng Pháp</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.french_certi"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.french_score"></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-        <tr>
-          <td class="input-title table-lang">Tiếng Việt/ Vietnamese</td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.viet_certi"></el-input>
-            </el-form-item>
-          </td>
-          <td>
-            <el-form-item class="table-lang">
-              <el-input v-model="academicHistoryData.viet_score"></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-      </table>
-    </el-form>
+        <el-form-item label="2. Số chứng minh thư nhân dân/ ID number:">
+          <el-input v-model="studentData.id_number"></el-input>
+        </el-form-item>
+        <el-form-item label="Ngày cấp:">
+          <el-input v-model="studentData.id_date"></el-input>
+        </el-form-item>
+        <el-form-item label="Nơi cấp:">
+          <el-input v-model="studentData.id_place"></el-input>
+        </el-form-item>
 
-    <el-form
-      :label-position="labelPosition"
-      ref="applicationData"
-      :model="applicationData"
-      label-width="100px"
-    >
-      <p class="input-title">
-        22. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công
-        nghệ Hà Nội chưa?/ Have you ever applied for admissions to University of
-        Science and Technology of Hanoi (USTH) before?
-      </p>
-      <br />
-      <el-radio-group v-model="applicationData.usth_applied">
-        <el-radio label="true">Có/ Yes</el-radio>
-        <div
-          v-if="applicationData.usth_applied == 'true'"
-          class="container-flex"
+        <el-form-item label="3. Ngày sinh/ Date of birth:">
+          <el-input v-model="studentData.DOB"></el-input>
+        </el-form-item>
+
+        <el-form-item label="4. Giới tính/ Gender">
+          <el-radio-group v-model="studentData.gender">
+            <el-radio label="male">Nam/ Male</el-radio>
+            <el-radio label="female">Nữ/ Female</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
+        <el-form-item label="5. Nơi sinh/ Place of birth:">
+          <el-input v-model="studentData.POB"></el-input>
+        </el-form-item>
+
+        <el-form-item label="6. Quốc tịch / Nationality:">
+          <el-input v-model="studentData.nationality"></el-input>
+        </el-form-item>
+
+        <el-form-item label="7. Dân tộc/ Ethnicity:">
+          <el-input v-model="studentData.ethnicity"></el-input>
+        </el-form-item>
+
+        <el-form-item
+          label="8. Địa chỉ gửi thư/ Current mailing address for correspondence:"
         >
-          <el-form-item label="Năm/ Year">
-            <el-input v-model="applicationData.usth_applied_year"></el-input>
-          </el-form-item>
-          <el-form-item label="Đợt/ Wave">
-            <el-input v-model="applicationData.usth_applied_wave"></el-input>
-          </el-form-item>
+          <el-input v-model="studentData.mail_address"></el-input>
+        </el-form-item>
+
+        <el-form-item label="9. Di động/Mobile phone:">
+          <el-input v-model="studentData.phone"></el-input>
+        </el-form-item>
+
+        <el-form-item label="11. Điện thoại/ Home phone:">
+          <el-input v-model="studentData.home_phone"></el-input>
+        </el-form-item>
+
+        <el-form-item label="12. Số di động của bố, mẹ/ Parent’s mobile No:">
+          <el-input v-model="studentData.parent_phone"></el-input>
+        </el-form-item>
+
+        <el-form-item label="13. Tình trạng hôn nhân/ Marital status:">
+          <el-radio-group v-model="studentData.marital_status">
+            <el-radio label="single">Độc thân/ Single</el-radio>
+            <el-radio label="married">Đã kết hôn/ Mariied</el-radio>
+          </el-radio-group>
+        </el-form-item>
+      </el-form>
+
+      <el-form
+        :label-position="labelPosition"
+        ref="addressData"
+        :model="addressData"
+        label-width="100px"
+      >
+        <p class="input-title">
+          14. Hộ khẩu thường trú/ Permanent Resident Address:
+        </p>
+        <el-form-item label="Số nhà/ House No.:">
+          <el-input v-model="addressData.house_number"></el-input>
+        </el-form-item>
+
+        <el-form-item label="Đường/ Street:">
+          <el-input v-model="addressData.street"></el-input>
+        </el-form-item>
+
+        <el-form-item label="Phường,xã/ Ward, commune:">
+          <el-input v-model="addressData.ward"></el-input>
+        </el-form-item>
+
+        <el-form-item label="Quận, huyện/ District:">
+          <el-input v-model="addressData.district"></el-input>
+        </el-form-item>
+
+        <el-form-item label="Tỉnh, thành phố/ Province:">
+          <el-input v-model="addressData.province"></el-input>
+        </el-form-item>
+      </el-form>
+
+      <el-form
+        :label-position="labelPosition"
+        ref="academicHistoryData"
+        :model="academicHistoryData"
+        label-width="100px"
+      >
+        <el-form-item label="15. Tên trường/ School name:">
+          <el-input v-model="academicHistoryData.school_name"></el-input>
+        </el-form-item>
+
+        <el-form-item label="16. Lớp/ Class:">
+          <el-input v-model="academicHistoryData.class"></el-input>
+        </el-form-item>
+
+        <el-form-item label="17. Địa chỉ đầy đủ/ Address:">
+          <el-input v-model="academicHistoryData.school_address"></el-input>
+        </el-form-item>
+
+        <p class="input-title">18. Kết quả học tập/ Result:</p>
+        <br />
+        <br />
+        <table>
+          <tr>
+            <td class="input-title title-lang">Kết quả (theo Học bạ) Result</td>
+            <td class="input-title title-lang">Xếp loại/ Grade</td>
+            <td class="input-title title-lang">ĐTB năm/ Final GPA</td>
+            <td class="input-title title-lang">Toán/ Maths</td>
+            <td class="input-title title-lang">Vật lý/ Physics</td>
+            <td class="input-title title-lang">Hóa học/ Chemistry</td>
+            <td class="input-title title-lang">Sinh học/ Biology</td>
+            <td class="input-title title-lang">Tin học/ IT</td>
+            <td class="input-title title-lang">Tiếng Anh/ English</td>
+          </tr>
+          <tr>
+            <td class="input-title table-lang ">Lớp 10/ Grade 10</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.grade_mark_10"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.gpa_mark_10"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.maths_mark_10"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.physics_mark_10"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.chemistry_mark_10"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.biology_mark_10"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.it_mark_10"></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.english_mark_10"
+                ></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="input-title table-lang ">Lớp 11/ Grade 11</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.grade_mark_11"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.gpa_mark_11"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.maths_mark_11"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.physics_mark_11"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.chemistry_mark_11"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.biology_mark_11"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.it_mark_11"></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.english_mark_11"
+                ></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="input-title table-lang ">Lớp 12/ Grade 12</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.grade_mark_12"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.gpa_mark_12"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.maths_mark_12"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.physics_mark_12"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.chemistry_mark_12"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.biology_mark_12"
+                ></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.it_mark_12"></el-input>
+              </el-form-item>
+            </td>
+
+            <td>
+              <el-form-item class="table-lang">
+                <el-input
+                  v-model="academicHistoryData.english_mark_12"
+                ></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+        </table>
+
+        <br />
+        <p class="input-title">
+          * Với thí sinh sẽ tốt nghiệp năm 2020, nếu chưa có điểm trung bình năm
+          lớp 12, vui lòng điền và ghi rõ điểm trung bình học kỳ 1 năm lớp 12/ For
+          candidate who will graduate from high school in 2019, please clearly
+          mention the average mark of the 1st semester of Grade 12 in case the
+          mark for full year is not released
+        </p>
+        <br />
+
+        <!-- Update Adward -->
+        <!-- <p class="input-title">
+          19. Các thành tích nổi bật (học bổng, giải thưởng …)/ Awards and
+          Distinctions:
+        </p>
+        <div>
+          <input type="file" id="file" ref="file" />
+          <button type="button" @click='uploadFile()' >Upload file</button>
+        </div> -->
+
+        <p class="input-title">19. Chứng chỉ (nếu có)/ Certificates (if any):</p>
+        <table style="padding-left: 7em">
+          <tr>
+            <td class="input-title title-lang">Ngoại ngữ/ Languages</td>
+            <td class="input-title title-lang">Chứng chỉ/ Certificate</td>
+            <td class="input-title title-lang">Điểm/Score</td>
+          </tr>
+          <tr>
+            <td class="input-title table-lang ">Tiếng Anh/ English</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.english_certi"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.english_score"></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+          <tr>
+            <td class="input-title table-lang">French/ Tiếng Pháp</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.french_certi"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.french_score"></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+          <tr>
+            <td class="input-title table-lang">Tiếng Việt/ Vietnamese</td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.viet_certi"></el-input>
+              </el-form-item>
+            </td>
+            <td>
+              <el-form-item class="table-lang">
+                <el-input v-model="academicHistoryData.viet_score"></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+        </table>
+      </el-form>
+
+      <el-form
+        :label-position="labelPosition"
+        ref="applicationData"
+        :model="applicationData"
+        label-width="100px"
+      >
+        <p class="input-title">
+          20. Bạn đã từng đăng ký tham gia dự tuyển tại trường ĐH Khoa học và Công
+          nghệ Hà Nội chưa?/ Have you ever applied for admissions to University of
+          Science and Technology of Hanoi (USTH) before?
+        </p>
+        <br />
+        <el-radio-group v-model="applicationData.usth_applied">
+          <el-radio label="true">Có/ Yes</el-radio>
+          <div
+            v-if="applicationData.usth_applied == 'true'"
+            class="container-flex"
+          >
+            <el-form-item label="Năm/ Year">
+              <el-input v-model="applicationData.usth_applied_year"></el-input>
+            </el-form-item>
+            <el-form-item label="Đợt/ Wave">
+              <el-input v-model="applicationData.usth_applied_wave"></el-input>
+            </el-form-item>
+          </div>
+          <el-radio label="false">Không/ No</el-radio>
+        </el-radio-group>
+
+        <br /><br /><br />
+        <p class="input-title">
+          21. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/
+          Have you ever registered for any University else before?
+        </p>
+        <br />
+        <el-radio-group v-model="applicationData.diff_university_applied">
+          <el-radio label="true">Có/ Yes</el-radio>
+          <div
+            v-if="applicationData.diff_university_applied == 'true'"
+            class="container-flex"
+          >
+            <el-form-item label="Năm/ Year:">
+              <el-input
+                v-model="applicationData.diff_university_applied_year"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Khối/ Group:">
+              <el-input
+                v-model="applicationData.diff_university_applied_group"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Điểm/ Mark:">
+              <el-input
+                v-model="applicationData.diff_university_applied_mark"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="Tên trường/ University name:">
+              <el-input
+                v-model="applicationData.diff_university_applied_mark"
+              ></el-input>
+            </el-form-item>
+          </div>
+          <el-radio label="false">Không/ No</el-radio>
+        </el-radio-group>
+
+        <br /><br /><br />
+        <p class="input-title">
+          22. Thông tin về kỳ thi THPT Quốc Gia dành cho thí sinh thi tốt nghiệp
+          trước năm 2020/ National Exam Information for student graduated before
+          2020:(thí sinh đang học lớp 12 hoặc theo học chương trình quốc tế không
+          phải điền mục này/Student who is studying in grade 12 or international
+          program do not have to fill this part)
+        </p>
+
+        <el-form-item class="part-input" label="Số báo danh/ Student Exam No.">
+          <el-input
+            v-model="applicationData.national_exam_student_number"
+          ></el-input>
+        </el-form-item>
+
+        <table>
+          <tr>
+            <td class="part-input">
+              <el-form-item label="Toán/ Mathematics">
+                <el-input
+                  v-model="applicationData.national_exam_math_result"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td class="part-input">
+              <el-form-item label="Vật lý/ Physics">
+                <el-input
+                  v-model="applicationData.national_exam_physics_result"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td class="part-input">
+              <el-form-item label="Hóa học/ Chemistry">
+                <el-input
+                  v-model="applicationData.national_exam_chemistry_result"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td class="part-input">
+              <el-form-item label="Sinh học/ Biology">
+                <el-input
+                  v-model="applicationData.national_exam_biology_result"
+                ></el-input>
+              </el-form-item>
+            </td>
+            <td class="part-input">
+              <el-form-item label="Tiếng Anh/ English">
+                <el-input
+                  v-model="applicationData.national_exam_english_result"
+                ></el-input>
+              </el-form-item>
+            </td>
+          </tr>
+        </table>
+
+        <p class="input-title" style="padding-left: 1em">
+        23. Ngành học xếp theo thứ tự ưu tiên/ Training Program in order of priority
+        </p>
+        <div class="part-input">
+          <p class="input-title">1<sup>st</sup>:</p>
+          <br />
+          <el-select
+            v-model="applicationData.first_training_program_id"
+            placeholder="First Program"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+          <br /><br />
+
+          <p class="input-title">2<sup>nd</sup>:</p>
+          <br />
+          <el-select
+            v-model="applicationData.second_training_program_id"
+            placeholder="Second Program"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              :disabled="item.disabled"
+            >
+            </el-option>
+          </el-select>
+          <br /><br />
+
+          <p class="input-title">3<sup>th</sup>:</p>
+          <br />
+          <el-select
+            v-model="applicationData.third_training_program_id"
+            placeholder="Third Program"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              :disabled="item.disabled"
+            >
+            </el-option>
+          </el-select>
+          <br /><br />
+
+          <p class="input-title">4<sup>th</sup>:</p>
+          <br />
+          <el-select
+            v-model="applicationData.fourth_training_program_id"
+            placeholder="Fourth Program"
+          >
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              :disabled="item.disabled"
+            >
+            </el-option>
+          </el-select>
         </div>
-        <el-radio label="false">Không/ No</el-radio>
-      </el-radio-group>
-
-      <br /><br /><br />
-      <p class="input-title">
-        23. Trước đây bạn có từng đăng ký một trường Đại học nào khác không?/
-        Have you ever registered for any University else before?
-      </p>
-      <br />
-      <el-radio-group v-model="applicationData.diff_university_applied">
-        <el-radio label="true">Có/ Yes</el-radio>
-        <div
-          v-if="applicationData.diff_university_applied == 'true'"
-          class="container-flex"
-        >
-          <el-form-item label="Năm/ Year:">
-            <el-input
-              v-model="applicationData.diff_university_applied_year"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="Khối/ Group:">
-            <el-input
-              v-model="applicationData.diff_university_applied_group"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="Điểm/ Mark:">
-            <el-input
-              v-model="applicationData.diff_university_applied_mark"
-            ></el-input>
-          </el-form-item>
-          <el-form-item label="Tên trường/ University name:">
-            <el-input
-              v-model="applicationData.diff_university_applied_mark"
-            ></el-input>
-          </el-form-item>
-        </div>
-        <el-radio label="false">Không/ No</el-radio>
-      </el-radio-group>
-
-      <br /><br /><br />
-      <p class="input-title">
-        24. Thông tin về kỳ thi THPT Quốc Gia dành cho thí sinh thi tốt nghiệp
-        trước năm 2020/ National Exam Information for student graduated before
-        2020:(thí sinh đang học lớp 12 hoặc theo học chương trình quốc tế không
-        phải điền mục này/Student who is studying in grade 12 or international
-        program do not have to fill this part)
-      </p>
-
-      <el-form-item class="part-input" label="Số báo danh/ Student Exam No.">
-        <el-input
-          v-model="applicationData.national_exam_student_number"
-        ></el-input>
-      </el-form-item>
-
-      <table>
-        <tr>
-          <td class="part-input">
-            <el-form-item label="Toán/ Mathematics">
-              <el-input
-                v-model="applicationData.national_exam_math_result"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td class="part-input">
-            <el-form-item label="Vật lý/ Physics">
-              <el-input
-                v-model="applicationData.national_exam_physics_result"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td class="part-input">
-            <el-form-item label="Hóa học/ Chemistry">
-              <el-input
-                v-model="applicationData.national_exam_chemistry_result"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td class="part-input">
-            <el-form-item label="Sinh học/ Biology">
-              <el-input
-                v-model="applicationData.national_exam_biology_result"
-              ></el-input>
-            </el-form-item>
-          </td>
-          <td class="part-input">
-            <el-form-item label="Tiếng Anh/ English">
-              <el-input
-                v-model="applicationData.national_exam_english_result"
-              ></el-input>
-            </el-form-item>
-          </td>
-        </tr>
-      </table>
-
-      <p class="input-title" style="padding-left: 1em">
-      25. Ngành học xếp theo thứ tự ưu tiên/ Training Program in order of priority
-      </p>
-      <div class="part-input">
-        <p class="input-title">1<sup>st</sup>:</p>
         <br />
-        <el-select
-          v-model="applicationData.first_training_program_id"
-          placeholder="First Program"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select>
-        <br /><br />
-
-        <p class="input-title">2<sup>nd</sup>:</p>
-        <br />
-        <el-select
-          v-model="applicationData.second_training_program_id"
-          placeholder="Second Program"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <br /><br />
-
-        <p class="input-title">3<sup>th</sup>:</p>
-        <br />
-        <el-select
-          v-model="applicationData.third_training_program_id"
-          placeholder="Third Program"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-        <br /><br />
-
-        <p class="input-title">4<sup>th</sup>:</p>
-        <br />
-        <el-select
-          v-model="applicationData.fourth_training_program_id"
-          placeholder="Fourth Program"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled"
-          >
-          </el-option>
-        </el-select>
-      </div>
-      <br />
-      <p class="input-title national_exam_table">
-        <strong>Lưu ý/ Note: </strong>
-        <br />
-        (*) Đối với các ngành không đủ số lượng sinh viên theo điều kiện mở
-        ngành thì sinh viên sẽ được chuyển nguyện vọng sang các ngành theo thứ
-        tự đã đăng ký (trừ ngành Kỹ thuật Hàng không). For program which does
-        not recruit enough students as the regulation, student will be
-        transferred to other program in the order of registration (except for
-        Aeronautical maintenance and Engineering program).
-        <br />
-        (**) Do đặc thù của chương trình đào tạo nên thí sinh có nguyện vọng học
-        ngành Kỹ thuật Hàng không thì thứ tự ưu tiên số 1 bắt buộc phải là ngành
-        Kỹ thuật hàng không. Students who apply for Aeronautical maintenance and
-        Engineering program must select Aeronautical Engineering program as the
-        1 st priority.
-      </p>
-      <el-form-item>
-        <div class="container-button">
-          <!-- sendDetail() -->
-          <el-button
-            class="button--grey"
-            @click="AddStudent()"
-            >Next</el-button
-          >
-        </div>
-      </el-form-item>
-    </el-form>
-  </div>
+        <p class="input-title national_exam_table">
+          <strong>Lưu ý/ Note: </strong>
+          <br />
+          (*) Đối với các ngành không đủ số lượng sinh viên theo điều kiện mở
+          ngành thì sinh viên sẽ được chuyển nguyện vọng sang các ngành theo thứ
+          tự đã đăng ký (trừ ngành Kỹ thuật Hàng không). For program which does
+          not recruit enough students as the regulation, student will be
+          transferred to other program in the order of registration (except for
+          Aeronautical maintenance and Engineering program).
+          <br />
+          (**) Do đặc thù của chương trình đào tạo nên thí sinh có nguyện vọng học
+          ngành Kỹ thuật Hàng không thì thứ tự ưu tiên số 1 bắt buộc phải là ngành
+          Kỹ thuật hàng không. Students who apply for Aeronautical maintenance and
+          Engineering program must select Aeronautical Engineering program as the
+          1 st priority.
+        </p>
+        <el-form-item>
+          <div class="container-button">
+            <!-- sendDetail() -->
+            <el-button
+              class="button--grey"
+              @click="AddStudent()"
+              >Next</el-button
+            >
+          </div>
+        </el-form-item>
+      </el-form>
+    </div>
+  </div> 
 </template>
 
 <script>
 import axios from 'axios'
+import user from "~/components/user.vue"
 
 export default {
   props: {
@@ -619,6 +625,10 @@ export default {
       type: String,
       default: "0"
     }
+  },
+
+  components: {
+    user
   },
 
   data() {

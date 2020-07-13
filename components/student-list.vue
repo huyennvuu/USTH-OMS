@@ -1,83 +1,91 @@
 <template>
-  <div class="student-table">
-    <el-row>
-      <el-col :span="24">
-        <el-table
-          :data="
-            tableData.filter(
-              data =>
-                !search ||
-                data.full_name.toLowerCase().includes(search.toLowerCase())
-            )
-          "
-          style="width: 100%"
-          class="center"
-        >
-          <el-table-column prop="id" label="ID" width="60" align="center"> </el-table-column>
-          <!-- <el-table-column 
-            prop="imgsrc"
-            label="Avatar"
-            width="80">
-            <img src="~/static/img/user.png" width="42" height="42" class="ava">
-          </el-table-column> -->
-          <el-table-column prop="full_name" label="Full Name" width="180">
-          </el-table-column>
-          <el-table-column prop="school_name" label="High School" width="180">
-          </el-table-column>
-          <el-table-column
-            prop="training_program"
-            label="Training Program"
-            width="170"
+  <div>
+  <div>
+    <user/>
+  </div>
+  <br>
+  <div>
+    <div class="student-table">
+      <el-row>
+        <el-col :span="24">
+          <el-table
+            :data="
+              tableData.filter(
+                data =>
+                  !search ||
+                  data.full_name.toLowerCase().includes(search.toLowerCase())
+              )
+            "
+            style="width: 100%"
+            class="center"
           >
-          </el-table-column>
-          <el-table-column prop="dob" label="Date of birth" width="140">
-          </el-table-column>
-          <el-table-column prop="gender" label="Gender" width="110">
-          </el-table-column>
-          <el-table-column width="240">
-            <template slot="header" slot-scope="scope">
-              <el-input
-                v-model="search"
-                size="mini"
-                placeholder="Type to search"
-              />
-            </template>
-            <template slot-scope="scope">
-              <el-button
-                style="margin-left: 12px"
-                size="medium"
-                type="info"
-                plain
-                @click="handleDetail(scope.$index, scope.row)"
-                >Detail</el-button
-              >
-              <el-button
-                size="medium"
-                type="primary"
-                @click="handleEvaluate(scope.$index, scope.row)"
-                >Evaluate</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-col>
-      <el-col :span="24">
-        <GEF
-          v-if="currentComponent === 'GEF'"
-          :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate"
-          :currentEmployeeId="this.currentEmployeeId"
-        />
-        <EEF
-          v-if="currentComponent === 'EEF'"
-          :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate"
-          :currentEmployeeId="this.currentEmployeeId"
-        />
-        <studentDetail
-          v-if="currentComponent === 'studentDetail'"
-          :currentIdDetail="this.currentIdDetail"
-        />
-      </el-col>
-    </el-row>
+            <el-table-column prop="id" label="ID" width="60" align="center"> </el-table-column>
+            <!-- <el-table-column 
+              prop="imgsrc"
+              label="Avatar"
+              width="80">
+              <img src="~/static/img/user.png" width="42" height="42" class="ava">
+            </el-table-column> -->
+            <el-table-column prop="full_name" label="Full Name" width="180">
+            </el-table-column>
+            <el-table-column prop="school_name" label="High School" width="180">
+            </el-table-column>
+            <el-table-column
+              prop="training_program"
+              label="Training Program"
+              width="170"
+            >
+            </el-table-column>
+            <el-table-column prop="dob" label="Date of birth" width="140">
+            </el-table-column>
+            <el-table-column prop="gender" label="Gender" width="110">
+            </el-table-column>
+            <el-table-column width="240">
+              <template slot="header" slot-scope="scope">
+                <el-input
+                  v-model="search"
+                  size="mini"
+                  placeholder="Type to search"
+                />
+              </template>
+              <template slot-scope="scope">
+                <el-button
+                  style="margin-left: 12px"
+                  size="medium"
+                  type="info"
+                  plain
+                  @click="handleDetail(scope.$index, scope.row)"
+                  >Detail</el-button
+                >
+                <el-button
+                  size="medium"
+                  type="primary"
+                  @click="handleEvaluate(scope.$index, scope.row)"
+                  >Evaluate</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+        <el-col :span="24">
+          <GEF
+            v-if="currentComponent === 'GEF'"
+            :currentIdGeneralEvaluate="this.currentIdGeneralEvaluate"
+            :currentEmployeeId="this.currentEmployeeId"
+          />
+          <EEF
+            v-if="currentComponent === 'EEF'"
+            :currentIdEnglishEvaluate="this.currentIdEnglishEvaluate"
+            :currentEmployeeId="this.currentEmployeeId"
+          />
+          <studentDetail
+            v-if="currentComponent === 'studentDetail'"
+            :currentIdDetail="this.currentIdDetail"
+          />
+        </el-col>
+      </el-row>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -88,6 +96,8 @@
 import GEF from "~/components/general-evaluation-form.vue";
 import EEF from "~/components/english-evaluation-form.vue";
 import studentDetail from "~/components/student-detail.vue";
+import user from "~/components/user.vue"
+
 export default {
   //user id
   props: {
@@ -99,7 +109,8 @@ export default {
   components: {
     GEF,
     EEF,
-    studentDetail
+    studentDetail,
+    user
   },
   data() {
     return {

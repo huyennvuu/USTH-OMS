@@ -42,8 +42,7 @@ export default {
 }
 
 .title {
-  font-family:'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family:'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   padding: 1em 1em 0em 1em;
   font-weight: 300;

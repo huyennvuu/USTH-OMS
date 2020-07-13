@@ -77,8 +77,9 @@ export default {
         }
         else{
           this.$emit('notLecturer', 'cucu');
-          this.$emit('sendAddmission', 'studentAddmission');
+          this.$emit('sendStudentHome', 'studentHome');
           this.$emit('sendId', response.data.user[0].id);
+          console.log("This iss usser ID: ",response.data.user[0].id)
           this.$emit('sendType', response.data.user[0].type);
           this.user.user_name = ""
           this.user.password = ""

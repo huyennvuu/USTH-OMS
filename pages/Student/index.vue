@@ -2,13 +2,22 @@
   <div class="container">
     <login 
       v-if="currentComponent === 'login'" 
-      @sendAddmission = "currentComponent = $event" 
-      @sendId = "userId = $event" @sendRegister="currentComponent = $event" 
+      @sendStudentHome = "currentComponent = $event" 
+      @sendId = "userId = $event" 
+      @sendRegister="currentComponent = $event" 
       :username="this.username"
     />
     <register 
       v-if="currentComponent === 'register'" 
       @sendLogin = "currentComponent = $event"
+    />
+    <studentHome 
+      v-if="currentComponent === 'studentHome'"
+      :currentStudentId ="this.userId"
+      @sendId = "userId = $event" 
+      @sendAF = "currentComponent = $event"
+      @sendDetail = "currentComponent = $event"
+      @showDetail = "showDetail = $event"
     />
     <studentAddmission 
       v-if="currentComponent === 'studentAddmission'" 
@@ -19,6 +28,7 @@
       <studentDetail 
         :currentIdDetail="this.userId"
         :showDetail="this.showDetail"
+        :print="this.print"
       />
       <button v-show="this.button == 'true'" class="button--grey" @click=" hideButton()"> export PDF </button>
     </div>
@@ -37,6 +47,7 @@ import studentDetail from "~/components/student-detail.vue"
 import login from "~/components/login.vue"
 import register from "~/components/register.vue"
 import uploadPDF from "~/components/uploadStudentPdf.vue"
+import studentHome from "~/components/student-home-page.vue"
 
 export default {
   components:{
@@ -44,7 +55,8 @@ export default {
     studentDetail,
     login,
     register,
-    uploadPDF
+    uploadPDF,
+    studentHome
   },
   data: function() {
     return {
@@ -60,6 +72,7 @@ export default {
   methods: {
     hideButton(){
       this.button = 'hide'
+      this.print = '1'
       window.setTimeout(this.printForm, 1000)
 
     },
