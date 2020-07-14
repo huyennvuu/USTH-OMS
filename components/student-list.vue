@@ -5,6 +5,20 @@
   </div>
   <br>
   <div>
+    <el-row>
+      <el-col :span="24">
+        <p class="subtitle big">
+          Trường Đại học Khoa học và Công nghệ Hà Nội
+        </p>
+        <p class="subtitle medium">
+          University of Science and Technology of Hanoi
+        </p>
+      </el-col>
+    </el-row>
+    <br>
+    <el-row>
+      <el-col :span="24"><p class="subtitle small">Jury {{currentJuryId}} Wave {{currentWaveId}} Year {{this_year}}</p></el-col>
+    </el-row>
     <div class="student-table">
       <el-row>
         <el-col :span="24">
@@ -130,7 +144,9 @@ export default {
       currentIdEnglishEvaluate: "",
       currentComponent: "",
       currentJuryId: "",
-      currentEmployeeId: ""
+      currentWaveId: "",
+      currentEmployeeId: "",
+      this_year:""
     };
   },
 
@@ -143,6 +159,7 @@ export default {
     this.getJuryId();
     this.isEnglishTeacher();
     this.getEmployeeId();
+    this.getYear()
   },
 
   watch: {
@@ -151,6 +168,11 @@ export default {
     }
   },
   methods: {
+    getYear(){
+      this.this_year = new Date().getFullYear()
+      console.log("This year is:", this.this_year)
+    },
+
     async listStudent() {
       try {
         const response = await this.$axios.get(
@@ -171,7 +193,9 @@ export default {
 
     handleDetail(index, row) {
       this.currentComponent = "studentDetail";
+      console.log("this is row id:", row.id)
       this.currentIdDetail = row.id;
+      console.log("this is id:", this.currentIdDetail)
     },
 
     handleEvaluate(index, row) {
@@ -194,9 +218,12 @@ export default {
             }
           }
         );
-        console.log(response);
+        console.log("meo",response);
 
         this.currentJuryId = response.data.juryId[0].id;
+        this.currentWaveId = response.data.juryId[0].wave_id;
+        console.log("wave", this.currentWaveId);
+        
       } catch (error) {
         console.error(error);
       }
@@ -252,5 +279,22 @@ tel-table-columnd{
   align-content: center;
   box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.1);
   padding: 0.5em;
+}
+
+.subtitle{
+  text-align: center;
+}
+
+.big{
+  font-weight: 450;
+}
+
+.medium{
+  font-weight: 350;
+  font-size: 32px;
+}
+
+.small{
+  font-size: 18px;
 }
 </style>

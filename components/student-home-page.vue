@@ -28,10 +28,10 @@
                   <br><br>
                   <div>
                     <el-button plain size="medium" @click="addAF()" v-if="newbie == '1'">Addmission Form</el-button>
-                    <el-button plain size="medium" @click="addAF()" v-if="newbie == '0'">Edit Form</el-button>
+                    <el-button plain size="medium" @click="editAF()" v-if="newbie == '0'">Edit Form</el-button>
                     <el-button type="primary" size="medium" v-if="newbie == '0'" @click="sendDetail()">Export Form</el-button>
                     <br><br>
-                    <admisionStatus v-if="newbie == '0'"/>
+                    <admisionStatus :student_id="this.student_id" v-if="newbie == '0'"/>
                   </div>
                 </div>
                 <el-tag v-if="wave_data[0].status == '2'" type="warning">Pending</el-tag>
@@ -48,10 +48,10 @@
                   <br><br>
                   <div>
                     <el-button plain size="medium" @click="addAF()" v-if="newbie == '1'">Addmission Form</el-button>
-                    <el-button plain size="medium" @click="addAF()" v-if="newbie == '0'">Edit Form</el-button>
+                    <el-button plain size="medium" @click="editAF()" v-if="newbie == '0'">Edit Form</el-button>
                     <el-button type="primary" size="medium" v-if="newbie == '0'" @click="sendDetail()">Export Form</el-button>
                     <br><br>
-                    <admisionStatus v-if="newbie == '0'"/>
+                    <admisionStatus :student_id="this.student_id" v-if="newbie == '0'"/>
                   </div>
                 </div>
                 <el-tag v-if="wave_data[1].status == '2'" type="warning" >Pending</el-tag>
@@ -68,10 +68,10 @@
                   <br><br>
                   <div>
                     <el-button plain size="medium" @click="addAF()" v-if="newbie == '1'">Addmission Form</el-button>
-                    <el-button plain size="medium" @click="addAF()" v-if="newbie == '0'">Edit Form</el-button>
+                    <el-button plain size="medium" @click="editAF()" v-if="newbie == '0'">Edit Form</el-button>
                     <el-button type="primary" size="medium" v-if="newbie == '0'" @click="sendDetail()">Export Form</el-button>
                     <br><br>
-                    <admisionStatus v-if="newbie == '0'"/>
+                    <admisionStatus :student_id="this.student_id" v-if="newbie == '0'"/>
                   </div>
                 </div>
                 <el-tag v-if="wave_data[2].status == '2'" type="warning">Pending</el-tag>
@@ -88,10 +88,10 @@
                   <br><br>
                   <div>
                     <el-button plain size="medium" @click="addAF()" v-if="newbie == '1'">Addmission Form</el-button>
-                    <el-button plain size="medium" @click="addAF()" v-if="newbie == '0'">Edit Form</el-button>
+                    <el-button plain size="medium" @click="editAF()" v-if="newbie == '0'">Edit Form</el-button>
                     <el-button type="primary" size="medium" v-if="newbie == '0'" @click="sendDetail()">Export Form</el-button>
                     <br><br>
-                    <admisionStatus v-if="newbie == '0'"/>
+                    <admisionStatus :student_id="this.student_id" v-if="newbie == '0'"/>
                   </div>
                 </div>
                 <el-tag v-if="wave_data[3].status == '2'" type="warning">Pending</el-tag>
@@ -217,12 +217,20 @@ export default {
     },
 
     addAF(){
-      this.$emit('sendId', this.user_id);
+      this.$emit('sendStudentId', '');
       this.$emit('sendAF', 'studentAddmission');
+      this.$emit('actionAF', 'add');
+    },
+
+    editAF(){
+      this.$emit('sendStudentId', this.student_id);
+      this.$emit('sendAF', 'studentAddmission');
+      this.$emit('actionAF', 'edit');
     },
 
     sendDetail(){
       this.$emit('sendDetail', 'studentDetail')
+      this.$emit('sendStudentId', this.student_id);
       this.$emit("showDetail", "true");
     }
   },
@@ -256,7 +264,7 @@ export default {
     font-size: 42px;
     color: #526488;
     word-spacing: 5px;
-    padding-top: 0em;
-    padding-bottom: 1em;
+    padding: 0em 0em 1em 1.2em;
+    /* padding-bottom: 1em; */
   }
 </style>

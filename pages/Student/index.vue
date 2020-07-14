@@ -14,14 +14,17 @@
     <studentHome 
       v-if="currentComponent === 'studentHome'"
       :currentStudentId ="this.userId"
-      @sendId = "userId = $event" 
+      @sendStudentId = "studentId = $event" 
       @sendAF = "currentComponent = $event"
+      @actionAF = "actionAF = $event"
       @sendDetail = "currentComponent = $event"
       @showDetail = "showDetail = $event"
     />
     <studentAddmission 
       v-if="currentComponent === 'studentAddmission'" 
-      :currentIdAdmission="this.userId" 
+      :userIdAdmission="this.userId"
+      :studentIdAdmission="this.studentId"
+      :actionAF="this.actionAF" 
       @sendUpload = "currentComponent = $event" 
     />
     <div v-if="currentComponent === 'studentDetail'" id="printPart" > 
@@ -65,7 +68,9 @@ export default {
       username: "",
       button: "true",
       print: "",
-      showDetail:""
+      showDetail:"",
+      actionAF: "",
+      studentId: "",
     };
   },
 

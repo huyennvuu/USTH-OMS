@@ -793,12 +793,12 @@ export default {
         }
       }
     },
+
   mounted: function() {
     // console.log("This is user id", this.currentIdAdmission)
     this.checkStudentId()
     this.getWave()
     this.studentData.user_id = this.currentIdAdmission
-    
   },
 
   watch: {
@@ -823,7 +823,7 @@ export default {
           "http://localhost/process.php?action=getStudentData",
           {
             params: {
-              currentId:this.currentIdAdmission
+              currentId:this.check_student_id
             }
           }
         );

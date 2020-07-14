@@ -554,7 +554,6 @@ export default {
 
   mounted: function(){
     this.currentId = this.currentIdDetail;
-    console.log("This is current user id from Detail:", this.currentId);
     this.getStudentData();
   },
 
