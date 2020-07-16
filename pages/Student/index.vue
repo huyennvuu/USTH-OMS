@@ -22,14 +22,12 @@
     />
     <studentAddmission 
       v-if="currentComponent === 'studentAddmission'" 
-      :userIdAdmission="this.userId"
-      :studentIdAdmission="this.studentId"
-      :actionAF="this.actionAF" 
+      :currentIdAdmission="this.userId"
       @sendUpload = "currentComponent = $event" 
     />
     <div v-if="currentComponent === 'studentDetail'" id="printPart" > 
       <studentDetail 
-        :currentIdDetail="this.userId"
+        :currentIdDetail="this.studentId"
         :showDetail="this.showDetail"
         :print="this.print"
       />

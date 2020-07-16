@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <el-container>
     <div>
       <h1 class="title">
         University of Science and Technology of Hanoi
@@ -22,7 +22,7 @@
         </nuxt-link>
       </div>
     </div>
-  </div>
+  </el-container>
 </template>
 
 <script>
@@ -44,6 +44,7 @@ export default {
 .title {
   font-family:'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
+  text-align: center;
   padding: 1em 1em 0em 1em;
   font-weight: 300;
   font-size: 100px;
@@ -53,6 +54,7 @@ export default {
 
 .subtitle {
   font-weight: 300;
+  text-align: center;
   font-size: 42px;
   color: #526488;
   word-spacing: 5px;
@@ -61,6 +63,8 @@ export default {
 
 .links{
   padding-top:2em ;
+  text-align: center;
+
 }
 
 </style>

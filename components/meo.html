@@ -1,0 +1,191 @@
+<style>
+  td {
+  text-align: center;
+  padding: 1em 2em 1em 2em;
+  vertical-align: center;
+  font-weight: 300;
+  font-size: 15px;
+  color: #526488;
+  border-style: groove;
+  border-width: 1px;
+}
+</style>
+<table style="border: 1px;">
+  <tr>
+    <td style="border: 1px;" colspan="2" class="table-title" >CRITERIA</td>
+    <td class="table-title">Max score</td>
+    <td class="table-title" style="text-align: right">Final score</td>
+    <td class="table-title">SCORE SCALE</td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="title">A. Academic transcripts</td>
+    <td>30</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.academic_transcripts"
+        ></el-input>
+      </el-form-item>
+    </td>
+    <td>( find detailed assessment in the attachment )</td>
+  </tr>
+
+  <tr>
+    <td colspan="5" style=" padding-left: 2em" class="title">
+      B. Direct academic assessment
+    </td>
+  </tr>
+
+  <tr>
+    <td rowspan="3">1. Standard Question</td>
+    <td>1.No</td>
+    <td>12</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.standard_question_1_mark"
+        ></el-input>
+      </el-form-item>
+    </td>
+    <td rowspan="3" style="text-align: left">
+      Right andswer: 12 points
+      <br />
+      Wrong andswer but Right method: 09 points
+      <br />
+      Wrong andswer: 0 points
+      <br />
+    </td>
+  </tr>
+  <tr>
+    <td>2.No</td>
+    <td>12</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.standard_question_2_mark"
+        ></el-input>
+      </el-form-item>
+    </td>
+  </tr>
+  <tr>
+    <td>2.No</td>
+    <td>12</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.standard_question_3_mark"
+        ></el-input>
+      </el-form-item>
+    </td>
+  </tr>
+
+  <tr>
+    <td rowspan="3">2. Advanced Question</td>
+    <td></td>
+    <td>9</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.advance_question_mark"
+        ></el-input>
+      </el-form-item>
+    </td>
+    <td rowspan="3" style="text-align: left">
+      Right andswer: 09 points
+      <br />
+      Wrong andswer but Right method: 06 points
+      <br />
+      Wrong andswer: 0 points
+      <br />
+    </td>
+  </tr>
+  <tr></tr>
+  <tr></tr>
+  <tr>
+    <td class="title" colspan="2">C. Motiavtion</td>
+    <td>20</td>
+    <td>
+      <el-form-item>
+        <el-input v-model="generalEvaluationData.motivation"></el-input>
+      </el-form-item>
+    </td>
+    <td style="text-align: left">
+      Strong motivation on choosing major, realistic career goals: 16- 20
+      points.
+      <br />
+      Fair motivation on choosing major: 01- 13 points
+      <br />
+      No motivation and understanding of the training program: 0 point
+    </td>
+  </tr>
+
+  <tr>
+    <td class="title" colspan="2">D. Other achievemets</td>
+    <td>5</td>
+    <td>
+      <el-form-item>
+        <el-input
+          v-model="generalEvaluationData.other_achievements"
+        ></el-input>
+      </el-form-item>
+    </td>
+    <td style="text-align: left">
+      Certifiates on prizers or compliments: 01- 03 points.
+      <br />
+      Participation in social acticities: 01 point.
+      <br />
+      Recommendation letter: 1 point.
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="title">Remarks</td>
+    <td></td>
+    <td colspan="2">
+      <el-form-item>
+        <el-input
+          type="textarea"
+          v-model="generalEvaluationData.remarks"
+        ></el-input>
+      </el-form-item>
+    </td>
+  </tr>
+</table>
+
+<el-form-item>
+  <div class="container-button">
+    <el-button
+      class="button--grey"
+      @click="
+        submitGEF();
+      "
+      >Submit</el-button
+    >
+    <!-- <el-button class="button--green" @click="resetForm('ruleForm')">Reset</el-button>     -->
+  </div>
+</el-form-item>
+</el-form>
+
+<table>
+<tr>
+  <td class="title">GPA:</td>
+  <td class="title">Equal Score</td>
+</tr>
+<tr>
+  <td>6.5-6.9</td>
+  <td>15 points</td>
+</tr>
+<tr>
+  <td>7.0-7.9</td>
+  <td>20 points</td>
+</tr>
+<tr>
+  <td>8.0-8.9</td>
+  <td>25 points</td>
+</tr>
+<tr>
+  <td>>9.0</td>
+  <td>30 points</td>
+</tr>
+</table>

@@ -1,22 +1,16 @@
 <template>
   <div class="container">
-    <div >
-      <table>
-        <tr>
-          <td class="header">
-            <img src="~/static/usth-logo.png" width="250" height="120">
-          </td>
-          <td class="header"> 
-            <p class="university-infor">
-              Trường Đại học Khoa học và Công nghệ Hà Nội
-              <br>
-              University of Science and Technology of Hanoi
-            </p>
-          </td>
-        </tr>
-      </table>
-    </div>
-    
+    <el-row :gutter="20">
+      <el-col :span="13"><img src="~/static/usth-logo.png" width="250" height="120"></el-col>
+      <el-col :span="11">
+        <p class="university-infor">
+          Trường Đại học Khoa học và Công nghệ Hà Nội
+          <br>
+          University of Science and Technology of Hanoi          
+        </p>
+      </el-col>
+    </el-row>
+
     <h2 class="subtitle">
       General Evaluation
       <br>
@@ -30,15 +24,16 @@
       label-width="100px"
     >
       <table>
+        
         <tr>
-          <td colspan="2" class="table-title ">CRITERIA</td>
+          <td colspan="2" class="table-title" >CRITERIA</td>
           <td class="table-title">Max score</td>
           <td class="table-title" style="text-align: right">Final score</td>
           <td class="table-title">SCORE SCALE</td>
         </tr>
 
         <tr>
-          <td colspan="2" class="title">A. Academic transcripts</td>
+          <td colspan="2" class="part">A. Academic transcripts</td>
           <td>30</td>
           <td>
             <el-form-item>
@@ -51,14 +46,14 @@
         </tr>
 
         <tr>
-          <td colspan="6" style=" padding-left: 2em" class="title">
+          <td colspan="5" class="part" >
             B. Direct academic assessment
           </td>
         </tr>
 
         <tr>
           <td rowspan="3">1. Standard Question</td>
-          <td>1.No</td>
+          <td>No.1</td>
           <td>12</td>
           <td>
             <el-form-item>
@@ -77,7 +72,7 @@
           </td>
         </tr>
         <tr>
-          <td>2.No</td>
+          <td>No.2</td>
           <td>12</td>
           <td>
             <el-form-item>
@@ -88,7 +83,7 @@
           </td>
         </tr>
         <tr>
-          <td>2.No</td>
+          <td>No.3</td>
           <td>12</td>
           <td>
             <el-form-item>
@@ -100,8 +95,7 @@
         </tr>
 
         <tr>
-          <td rowspan="3">2. Advanced Question</td>
-          <td></td>
+          <td rowspan="3" colspan="2" style="text-align: left">2. Advanced Question</td>
           <td>9</td>
           <td>
             <el-form-item>
@@ -122,7 +116,7 @@
         <tr></tr>
         <tr></tr>
         <tr>
-          <td class="title" colspan="2">C. Motiavtion</td>
+          <td  colspan="2" class="part">C. Motiavtion</td>
           <td>20</td>
           <td>
             <el-form-item>
@@ -140,7 +134,7 @@
         </tr>
 
         <tr>
-          <td class="title" colspan="2">D. Other achievemets</td>
+          <td  colspan="2" class="part">D. Other achievemets</td>
           <td>5</td>
           <td>
             <el-form-item>
@@ -159,7 +153,7 @@
         </tr>
 
         <tr>
-          <td colspan="2" class="title">Remarks</td>
+          <td colspan="2" class="part">Remarks</td>
           <td></td>
           <td colspan="2">
             <el-form-item>
@@ -188,8 +182,8 @@
 
     <table>
       <tr>
-        <td class="title">GPA:</td>
-        <td class="title">Equal Score</td>
+        <td class="part">GPA</td>
+        <td class="part">Equal Score</td>
       </tr>
       <tr>
         <td>6.5-6.9</td>
@@ -338,7 +332,7 @@ export default {
 
 td {
   text-align: center;
-  padding: 1em 2em 1em 2em;
+  padding: 0.5em 1em;
   vertical-align: center;
   font-weight: 300;
   font-size: 15px;
@@ -370,14 +364,20 @@ td {
 }
 
 .university-infor{
-  font-size: 18px;
+  padding-top: 3em;
+  font-size: 17px;
+  font-weight: 250;
   color: #606266;
   text-align: center;
-  margin-left: 9em;
 }
 
 .header{
   border-top-style: none;
 }
 
+.part{
+  font-size: 18px ;
+  text-align: left;
+  font-weight: 400;
+}
 </style>
