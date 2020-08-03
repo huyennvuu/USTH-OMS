@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2020 at 10:38 AM
+-- Generation Time: Jul 16, 2020 at 10:27 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.27
 
@@ -72,11 +72,12 @@ CREATE TABLE `academic history` (
 --
 
 INSERT INTO `academic history` (`id`, `school_name`, `class`, `school_address`, `grade_mark_10`, `gpa_mark_10`, `maths_mark_10`, `physics_mark_10`, `chemistry_mark_10`, `biology_mark_10`, `it_mark_10`, `english_mark_10`, `grade_mark_11`, `gpa_mark_11`, `maths_mark_11`, `physics_mark_11`, `chemistry_mark_11`, `biology_mark_11`, `it_mark_11`, `english_mark_11`, `grade_mark_12`, `gpa_mark_12`, `maths_mark_12`, `physics_mark_12`, `chemistry_mark_12`, `biology_mark_12`, `it_mark_12`, `english_mark_12`, `english_certi`, `english_score`, `french_certi`, `french_score`, `viet_certi`, `viet_score`, `adward`, `student_id`) VALUES
-(1, 'Chuyen Su Pham', 'A1', '78 Xuan Thuy, Ha Noi', 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'Nguyen Gia Thieu', 'A2', '89 Ngoc Lam, Ha Noi', 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2),
-(3, 'Pham Hong Thai', 'A1', '89 Cau Giay, Ha Noi', 'good', 8, 9, 9, 9, 10, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3),
-(4, 'Viet Duc', 'A4', '4 Phan Dinh Phung, Hanoi', 'good', 9, 8, 9, 9, 9, 9, 8, 'good', 8, 9, 8, 9, 9, 8, 8, 'good', 8, 9, 8, 9, 8, 9, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4),
-(5, 'Kim Lien', 'A2', '5 Kim Lien', 'good', 9, 9, 9, 9, 9, 9, 9, 'good', 9, 9, 9, 9, 9, 9, 9, 'good', 9, 9, 9, 9, 9, 9, 9, 'IELTS', '8.0', '', '', '', '', '', 5);
+(1, 'Chuyen Su Pham', 'A1', '78 Xuan Thuy, Ha Noi', 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, '1/adward.pdf', 1),
+(2, 'Nguyen Gia Thieu', 'A2', '89 Ngoc Lam, Ha Noi', 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, '2/adward.pdf', 2),
+(3, 'Pham Hong Thai', 'A1', '89 Cau Giay, Ha Noi', 'good', 8, 9, 9, 9, 10, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, 'good', 8, 9, 9, 9, 8, 9, 9, NULL, NULL, NULL, NULL, NULL, NULL, '3/adward.pdf', 3),
+(4, 'Viet Duc', 'A4', '4 Phan Dinh Phung, Hanoi', 'good', 9, 8, 9, 9, 9, 9, 8, 'good', 8, 9, 8, 9, 9, 8, 8, 'good', 8, 9, 8, 9, 8, 9, 8, NULL, NULL, NULL, NULL, NULL, NULL, '4/', 4),
+(5, 'Kim Lien', 'A2', '5 Kim Lien', 'good', 9, 9, 9, 9, 9, 9, 9, 'good', 9, 9, 9, 9, 9, 9, 9, 'good', 9, 9, 9, 9, 9, 9, 9, 'IELTS', '8.0', '', '', '', '', '', 5),
+(6, 'Phan Ke Binh', '9', '19 Phan Ke Binh', 'good', 9, 8, 9, 9, 10, 9, 10, 'good', 8, 9, 8, 9, 8, 8, 8, 'good', 9, 9, 9, 8, 9, 10, 10, '', '', '', '', '', '', '6/adward.pdf', 6);
 
 -- --------------------------------------------------------
 
@@ -90,19 +91,25 @@ CREATE TABLE `address` (
   `street` varchar(45) NOT NULL,
   `ward` varchar(45) NOT NULL,
   `district` varchar(10) NOT NULL,
-  `province` varchar(10) NOT NULL
+  `province` varchar(10) NOT NULL,
+  `student_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `address`
 --
 
-INSERT INTO `address` (`id`, `house_number`, `street`, `ward`, `district`, `province`) VALUES
-(1, 17, 'Le Van Luong', 'Tu Liem', 'Cau Giay', 'Ha Noi'),
-(2, 19, 'Duc Giang', 'Duc Giang', 'Long Bien', 'Ha Noi'),
-(3, 20, 'Hoang Quoc Viet', 'Cau Giay', 'Cau Giay', 'Ha Noi'),
-(4, 21, 'Ngoc Lam', 'Ngoc Lam', 'Long Bien', 'Ha Noi'),
-(5, 5, 'Gia Thuy', 'Gia Thuy', 'Long Bien', 'Hanoi');
+INSERT INTO `address` (`id`, `house_number`, `street`, `ward`, `district`, `province`, `student_id`) VALUES
+(1, 17, 'Le Van Luong', 'Tu Liem', 'Cau Giay', 'Ha Noi', 1),
+(2, 19, 'Duc Giang', 'Duc Giang', 'Long Bien', 'Ha Noi', 2),
+(3, 20, 'Hoang Quoc Viet', 'Cau Giay', 'Cau Giay', 'Ha Noi', 3),
+(4, 21, 'Ngoc Lam', 'Ngoc Lam', 'Long Bien', 'Ha Noi', 4),
+(5, 5, 'Gia Thuy', 'Gia Thuy', 'Long Bien', 'Hanoi', 5),
+(6, 21, 'Hai Ba Trung', 'Dong Da', 'Dong Da', 'Hanoi', 6),
+(73, 0, '', '', '', '', 0),
+(74, 0, '', '', '', '', 0),
+(75, 0, '', '', '', '', 0),
+(76, 0, '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -131,19 +138,21 @@ CREATE TABLE `application information` (
   `second_training_program_id` int(10) NOT NULL,
   `third_training_program_id` int(10) NOT NULL,
   `fourth_training_program_id` int(10) NOT NULL,
-  `student_id` int(10) NOT NULL
+  `student_id` int(10) NOT NULL,
+  `status` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `application information`
 --
 
-INSERT INTO `application information` (`id`, `usth_applied`, `USTH_applied_year`, `USTH_applied_wave`, `diff_university_applied`, `diff_university_applied_year`, `diff_university_applied_mark`, `diff_university_applied_group`, `diff_university_applied_name`, `national_exam_student_number`, `national_exam_math_result`, `national_exam_physics_result`, `national_exam_chemistry_result`, `national_exam_biology_result`, `national_exam_english_result`, `motivation_letter`, `first_training_program_id`, `second_training_program_id`, `third_training_program_id`, `fourth_training_program_id`, `student_id`) VALUES
-(1, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 1, 8, 9, 8, 9, 9, '/01/motivation', 1, 3, 2, 5, 1),
-(2, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 2, 8, 9, 8, 9, 9, '/02/motivation', 2, 3, 4, 5, 2),
-(3, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 3, 8, 9, 8, 9, 9, '/03/motivation', 2, 4, 7, 5, 3),
-(4, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 4, 9, 8, 9, 8, 9, '/02/motivation', 1, 2, 5, 8, 4),
-(5, '0', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, 9, 9, 8, 9, 9, '', 1, 2, 3, 4, 5);
+INSERT INTO `application information` (`id`, `usth_applied`, `USTH_applied_year`, `USTH_applied_wave`, `diff_university_applied`, `diff_university_applied_year`, `diff_university_applied_mark`, `diff_university_applied_group`, `diff_university_applied_name`, `national_exam_student_number`, `national_exam_math_result`, `national_exam_physics_result`, `national_exam_chemistry_result`, `national_exam_biology_result`, `national_exam_english_result`, `motivation_letter`, `first_training_program_id`, `second_training_program_id`, `third_training_program_id`, `fourth_training_program_id`, `student_id`, `status`) VALUES
+(1, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 1, 8, 9, 8, 9, 9, '1/motivation.pdf', 1, 3, 2, 5, 1, 1),
+(2, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 2, 8, 9, 8, 9, 9, '2/motivation.pdf', 2, 3, 4, 5, 2, 1),
+(3, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 3, 8, 9, 8, 9, 9, '3/motivation.pdf', 2, 4, 7, 5, 3, 1),
+(4, 'false', NULL, NULL, 'false', NULL, NULL, NULL, NULL, 4, 9, 8, 9, 8, 9, '4/', 1, 2, 5, 8, 4, 0),
+(6, 'false', '', '', 'false', 0, '', '', '', 6, 8, 8, 7, 7, 10, '6/motivation.pdf', 2, 4, 6, 3, 6, 0),
+(7, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, 0, 0, 0, '', 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -165,7 +174,8 @@ CREATE TABLE `employee` (
 
 INSERT INTO `employee` (`id`, `full_name`, `phone_number`, `user_id`, `is_english_teacher`) VALUES
 (1, 'Doan Nhat Quang', '0937482647', 4, 0),
-(2, 'Trinh Thi Thu Trang', '0993742647', 5, 0);
+(2, 'Trinh Thi Thu Trang', '0993742647', 5, 0),
+(3, 'Can Thi Chang Duyen', '0946375847', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -183,20 +193,18 @@ CREATE TABLE `english evaluation` (
   `grama_accuracy_mark` int(30) NOT NULL,
   `pronunciation_mark` int(30) NOT NULL,
   `student_id` int(10) NOT NULL,
-  `jury_id` int(10) NOT NULL,
   `remarks` varchar(255) DEFAULT NULL,
-  `employee_id` int(10) NOT NULL,
-  `status` tinyint(4) DEFAULT NULL
+  `employee_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `english evaluation`
 --
 
-INSERT INTO `english evaluation` (`id`, `datetime`, `result`, `overall`, `fluency_coherence_mark`, `resource_mark`, `grama_accuracy_mark`, `pronunciation_mark`, `student_id`, `jury_id`, `remarks`, `employee_id`, `status`) VALUES
-(1, '2017-04-01', '3-year-program', 87, 20, 22, 21, 24, 1, 1, NULL, 1, 0),
-(2, '2017-06-01', '3-year-program', 90, 23, 22, 21, 24, 2, 2, NULL, 1, 0),
-(3, '2015-06-01', '3-year-program', 90, 22, 22, 21, 25, 3, 3, NULL, 1, 0);
+INSERT INTO `english evaluation` (`id`, `datetime`, `result`, `overall`, `fluency_coherence_mark`, `resource_mark`, `grama_accuracy_mark`, `pronunciation_mark`, `student_id`, `remarks`, `employee_id`) VALUES
+(1, '2017-04-01', '3-year-program', 87, 20, 22, 21, 24, 1, NULL, 3),
+(2, '2017-06-01', '3-year-program', 90, 23, 22, 21, 24, 2, NULL, 3),
+(3, '2015-06-01', '3-year-program', 90, 22, 22, 21, 25, 3, NULL, 3);
 
 -- --------------------------------------------------------
 
@@ -216,21 +224,24 @@ CREATE TABLE `general evaluation` (
   `other_achievements` int(30) NOT NULL,
   `remarks` varchar(500) DEFAULT NULL,
   `student_id` int(10) NOT NULL,
-  `jury_id` int(10) NOT NULL,
-  `employee_id` int(10) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL
+  `employee_id` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `general evaluation`
 --
 
-INSERT INTO `general evaluation` (`id`, `datetime`, `academic_transcripts`, `standard_question_1_mark`, `standard_question_2_mark`, `standard_question_3_mark`, `advance_question_mark`, `motivation`, `other_achievements`, `remarks`, `student_id`, `jury_id`, `employee_id`, `status`) VALUES
-(1, '2017-04-01', 25, 12, 12, 12, 8, 20, 0, NULL, 1, 1, 1, NULL),
-(2, '2017-06-01', 25, 12, 12, 12, 8, 20, 0, NULL, 2, 2, 1, NULL),
-(3, '2016-06-01', 25, 12, 12, 12, 8, 20, 0, NULL, 3, 3, 1, NULL),
-(5, '2020-05-24', 25, 12, 12, 12, 9, 17, 0, '', 3, 3, 1, NULL),
-(7, '2020-05-29', 0, 0, 0, 0, 0, 0, 0, '', 1, 3, NULL, NULL);
+INSERT INTO `general evaluation` (`id`, `datetime`, `academic_transcripts`, `standard_question_1_mark`, `standard_question_2_mark`, `standard_question_3_mark`, `advance_question_mark`, `motivation`, `other_achievements`, `remarks`, `student_id`, `employee_id`) VALUES
+(1, '2017-04-01', 25, 12, 12, 12, 8, 20, 0, NULL, 1, 1),
+(2, '2017-06-01', 25, 12, 12, 12, 8, 20, 0, NULL, 2, 1),
+(3, '2016-06-01', 25, 12, 12, 12, 8, 20, 0, NULL, 3, 1),
+(5, '2020-05-24', 25, 12, 12, 12, 9, 17, 0, '', 3, 1),
+(10, '0000-00-00', 0, 0, 0, 0, 0, 0, 0, NULL, 0, NULL),
+(11, '2020-06-02', 7, 7, 7, 7, 7, 7, 7, '7', 2, 1),
+(12, '0000-00-00', 0, 0, 0, 0, 0, 0, 0, NULL, 0, NULL),
+(13, '2020-06-02', 9, 9, 9, 9, 9, 9, 9, '9', 2, 1),
+(14, '0000-00-00', 0, 0, 0, 0, 0, 0, 0, NULL, 0, NULL),
+(15, '2020-06-02', 1, 1, 1, 1, 1, 1, 1, '1', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -253,7 +264,7 @@ INSERT INTO `jury` (`id`, `time`, `wave_id`) VALUES
 (2, '2017-06-01 09:30:00', 4),
 (3, '2016-06-01 09:30:00', 1),
 (4, '2016-04-01 09:30:00', 2),
-(5, '2020-09-09 09:30:00', 5);
+(5, '2020-09-09 09:30:00', 7);
 
 -- --------------------------------------------------------
 
@@ -276,7 +287,34 @@ INSERT INTO `jury employee detail` (`id`, `jury_id`, `employee_id`) VALUES
 (2, 2, 1),
 (3, 3, 1),
 (4, 4, 1),
-(5, 5, 1);
+(5, 5, 1),
+(6, 5, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `question bank`
+--
+
+CREATE TABLE `question bank` (
+  `id` int(10) NOT NULL,
+  `subject` varchar(250) NOT NULL,
+  `question` varchar(250) NOT NULL,
+  `A` varchar(250) NOT NULL,
+  `B` varchar(250) NOT NULL,
+  `C` varchar(250) NOT NULL,
+  `D` varchar(250) NOT NULL,
+  `answer` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `question bank`
+--
+
+INSERT INTO `question bank` (`id`, `subject`, `question`, `A`, `B`, `C`, `D`, `answer`) VALUES
+(1, 'Math', 'What is the Earth name for the little prince’s home planet?', 'Asteroid b-612', 'Asteroid mu-330', 'Mars', 'Asteroid d-814', 'A'),
+(2, 'Chemistry', 'Why does the little prince leave his planet?', 'He wants to visit Earth', 'He begins to doubt the rose’s sincerity', 'A sheep eats his rose', 'Baobabs eats his planet', 'B'),
+(3, 'Physics', 'Why is the rose certain she can defend herself?', 'No large animals exist on the prince’s planet', 'Large animals eat princes, not roses', 'She has four thorns', 'The prince draws her a guard dog', 'C');
 
 -- --------------------------------------------------------
 
@@ -301,21 +339,22 @@ CREATE TABLE `student` (
   `home_phone` varchar(20) NOT NULL,
   `parent_phone` varchar(20) NOT NULL,
   `marital_status` varchar(45) NOT NULL,
-  `address_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
-  `jury_id` int(10) NOT NULL
+  `jury_id` int(10) DEFAULT NULL,
+  `wave_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `full_name`, `ava`, `id_number`, `id_date`, `id_place`, `gender`, `DOB`, `POB`, `nationality`, `ethnicity`, `mail_address`, `phone`, `home_phone`, `parent_phone`, `marital_status`, `address_id`, `user_id`, `jury_id`) VALUES
-(1, 'Do Thi Minh Ngoc', '/01/ava.png', 1, '2010-05-01', 'Hanoi', 'female', '1999-02-04', 'Hanoi', 'Vietbnamese', 'Kinh', '06 Cau Giay, Ha Noi', '0936472836', '093647813', '0936486384', 'single', 1, 1, 1),
-(2, 'Vu Khanh Huyen', '/02/ava.png', 2, '2010-06-01', 'Hanoi', 'female', '1999-08-09', 'Hanoi', 'Vietbnamese', 'Kinh', '07 Duc Giang, Ha Noi', '0974829472', '093729813', '0973436384', 'single', 2, 2, 2),
-(3, 'Luong Hung Son', '/03/ava.png', 3, '2008-06-01', 'Hanoi', 'male', '1999-02-04', 'Hanoi', 'Vietbnamese', 'Kinh', '08 Hoang Quoc Viet, Ha Noi', '0931112836', '093213813', '0974839253', 'single', 3, 3, 3),
-(4, 'Doan Lien Huong', NULL, 4, '2010-06-01', 'Hanoi', 'female', '1999-11-12', 'Hanoi', 'Vietnamese', 'Kinh', 'Hanoi', '0903849347', '0437584768', '0934753847', 'single', 4, 7, 4),
-(5, 'Le Nhu Chu Hiep', NULL, 5, '2010-05-01', 'Hanoi', 'male', '1999-05-02', 'Hanoi', 'Vietnamese', 'Kinh', 'Hanoi', '094738578', '034857957', '094373855', 'single', 5, 8, 5);
+INSERT INTO `student` (`id`, `full_name`, `ava`, `id_number`, `id_date`, `id_place`, `gender`, `DOB`, `POB`, `nationality`, `ethnicity`, `mail_address`, `phone`, `home_phone`, `parent_phone`, `marital_status`, `user_id`, `jury_id`, `wave_id`) VALUES
+(1, 'Do Thi Minh Ngoc', '/01/ava.png', 1, '2010-05-01', 'Hanoi', 'female', '1999-02-04', 'Hanoi', 'Vietbnamese', 'Kinh', '06 Cau Giay, Ha Noi', '0936472836', '093647813', '0936486384', 'single', 1, 5, 1),
+(2, 'Vu Khanh Huyen', '/02/ava.png', 2, '2010-06-01', 'Hanoi', 'female', '1999-08-09', 'Hanoi', 'Vietbnamese', 'Kinh', '07 Duc Giang, Ha Noi', '0974829472', '093729813', '0973436384', 'single', 2, 5, 2),
+(3, 'Luong Hung Son', '/03/ava.png', 3, '2008-06-01', 'Hanoi', 'male', '1999-02-04', 'Hanoi', 'Vietbnamese', 'Kinh', '08 Hoang Quoc Viet, Ha Noi', '0931112836', '093213813', '0974839253', 'single', 3, 5, 3),
+(4, 'Doan Lien Huong', NULL, 4, '2010-06-01', 'Hanoi', 'female', '1999-11-12', 'Hanoi', 'Vietnamese', 'Kinh', 'Hanoi', '0903849347', '0437584768', '0934753847', 'single', 7, 5, 4),
+(5, 'Le Nhu Chu Hiep', NULL, 5, '2010-05-01', 'Hanoi', 'male', '1999-05-02', 'Hanoi', 'Vietnamese', 'Kinh', 'Hanoi', '094738578', '034857957', '094373855', 'single', 8, 5, 5),
+(6, 'Pham Phan Bach', NULL, 6, '2010-05-15', 'Hanoi', 'male', '1999-06-12', 'Hanoi', 'Vietnamese', 'Kinh', 'Hanoi', '0937482573', '0437583592', '0934857275', 'single', 14, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -373,7 +412,10 @@ INSERT INTO `user` (`id`, `user_name`, `password`, `email`, `type`) VALUES
 (4, 'quacquac', 'quacquac', 'quacquac@gmail.com', 'lecturer'),
 (5, 'vaycanh', 'vaycanh', 'vaycanh@gmail.com', 'staff'),
 (7, 'meomeo', 'meomeo', 'meomeo@gmail.com', 'student'),
-(8, 'gaugau', 'gaugau', 'gaugau@gmail.com', 'student');
+(8, 'gaugau', 'gaugau', 'gaugau@gmail.com', 'student'),
+(9, 'cuctacuctac', 'cuctacuctac', 'cuctacuctac@gmail.com', 'lecturer'),
+(10, 'ecec', 'ecec', 'ecec@gmail.com', 'student'),
+(14, 'grugru', 'grugru', 'grugru@gmail.com', 'student');
 
 -- --------------------------------------------------------
 
@@ -399,7 +441,10 @@ INSERT INTO `wave` (`id`, `date_start`, `date_end`, `status`, `wave_name`, `acad
 (2, '2016-02-01', '2016-03-25', 0, '2', '2016'),
 (3, '2017-02-01', '2017-03-25', 0, '1', '2017'),
 (4, '2017-04-01', '2017-05-25', 0, '2', '2017'),
-(5, '2020-06-29', '2020-08-29', 1, '1', '2020');
+(5, '2020-02-01', '2020-03-25', 0, '1', '2020'),
+(6, '2020-04-01', '2020-05-25', 0, '2', '2020'),
+(7, '2020-06-01', '2020-08-25', 1, '3', '2020'),
+(8, '2020-09-01', '2020-10-25', 2, '4', '2020');
 
 --
 -- Indexes for dumped tables
@@ -442,7 +487,6 @@ ALTER TABLE `employee`
 ALTER TABLE `english evaluation`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `jury_id` (`jury_id`),
   ADD KEY `employee_id` (`employee_id`);
 
 --
@@ -451,7 +495,6 @@ ALTER TABLE `english evaluation`
 ALTER TABLE `general evaluation`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`),
-  ADD KEY `jury_id` (`jury_id`),
   ADD KEY `general evaluation_ibfk_3` (`employee_id`);
 
 --
@@ -470,11 +513,16 @@ ALTER TABLE `jury employee detail`
   ADD KEY `employee_id` (`employee_id`);
 
 --
+-- Indexes for table `question bank`
+--
+ALTER TABLE `question bank`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `student_ibfk_1` (`address_id`),
   ADD KEY `student_ibfk_2` (`user_id`),
   ADD KEY `jury_id` (`jury_id`);
 
@@ -504,25 +552,25 @@ ALTER TABLE `wave`
 -- AUTO_INCREMENT for table `academic history`
 --
 ALTER TABLE `academic history`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `application information`
 --
 ALTER TABLE `application information`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `english evaluation`
@@ -534,7 +582,7 @@ ALTER TABLE `english evaluation`
 -- AUTO_INCREMENT for table `general evaluation`
 --
 ALTER TABLE `general evaluation`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `jury`
@@ -546,13 +594,19 @@ ALTER TABLE `jury`
 -- AUTO_INCREMENT for table `jury employee detail`
 --
 ALTER TABLE `jury employee detail`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `question bank`
+--
+ALTER TABLE `question bank`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `training program`
@@ -564,13 +618,13 @@ ALTER TABLE `training program`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `wave`
 --
 ALTER TABLE `wave`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
@@ -592,9 +646,7 @@ ALTER TABLE `jury`
 -- Constraints for table `student`
 --
 ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `student_ibfk_3` FOREIGN KEY (`jury_id`) REFERENCES `jury` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

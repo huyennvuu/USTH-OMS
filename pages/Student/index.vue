@@ -23,13 +23,15 @@
     <studentAddmission 
       v-if="currentComponent === 'studentAddmission'" 
       :currentIdAdmission="this.userId"
-      @sendUpload = "currentComponent = $event" 
+      @sendHome = "currentComponent = $event"  
+      @sendUpload = "currentComponent = $event"
     />
     <div v-if="currentComponent === 'studentDetail'" id="printPart" > 
       <studentDetail 
         :currentIdDetail="this.studentId"
         :showDetail="this.showDetail"
         :print="this.print"
+        @sendHome = "currentComponent = $event"  
       />
       <button v-show="this.button == 'true'" class="button--grey" @click=" hideButton()"> export PDF </button>
     </div>

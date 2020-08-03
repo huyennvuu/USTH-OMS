@@ -13,13 +13,13 @@
       style="width: 310px"
       >
         <el-form-item>
-          <el-input v-model="newUserData.user_name" placeholder="Username"></el-input>
+          <el-input v-model="newUserData.user_name" placeholder="username"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="newUserData.email" placeholder="Email"></el-input>
+          <el-input v-model="newUserData.email" placeholder="email@gmail.com"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input placeholder="Password" v-model="newUserData.password" show-password></el-input>
+          <el-input placeholder="password" v-model="newUserData.password" show-password></el-input>
         </el-form-item>
       </el-form>
 

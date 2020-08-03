@@ -3,7 +3,12 @@
     <el-header>
     <el-row :gutter="20">
       <el-col :span="8"><img class="logo" src="~/static/usth-logo.png" width="240" height="120" /></el-col>
-      <el-col :span="12" style="float: right"><user/></el-col>
+      <el-col :span="12" style="float: right">
+        <p class="subtitle small user">
+          Hi, {{name}}
+          <user/>
+        </p>
+      </el-col>
     </el-row>
     </el-header>
     <br>
@@ -127,6 +132,7 @@ export default {
       user_id: "",
       student_id: "",
       this_year: "",
+      name: "",
       wave_data: [{
         academic_year:"",
         date_end:"",
@@ -210,6 +216,7 @@ export default {
         else{
           this.student_id = response.data.studentId[0].id
           this.newbie = '0'
+          this.name = response.data.studentId[0].full_name.split(' ').slice(-1).join(' ')
         }
       } catch (error) {
         console.error(error);
@@ -266,5 +273,15 @@ export default {
     word-spacing: 5px;
     padding: 0em 0em 1em 1.2em;
     /* padding-bottom: 1em; */
+  }
+
+  .small{
+  font-size: 18px;
+  }
+
+  .user{
+    float: right;
+    padding: 1em;
+    display: flex;
   }
 </style>

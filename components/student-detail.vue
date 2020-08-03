@@ -1,7 +1,13 @@
 <template>
   <el-container>
     <div class="container">
-
+      <el-row>
+        <el-col :span="12">
+          <el-page-header @back="sendHome" title="" content="Admission Form" v-if="lecturer != 1"></el-page-header>
+        </el-col>
+        <el-col :span="2" :offset="10"></el-col>
+      </el-row> 
+      <br>
       <el-row :gutter="20">
         <el-col :span="6"><img src="~/static/usth-logo.png" width="250" height="120"></el-col>
         <el-col :span="10" :offset="7">
@@ -443,6 +449,10 @@ export default {
     print: {
       type: String,
       default: "0"
+    },
+    lecturer: {
+      type: String,
+      default: "0"
     }
   },
   
@@ -720,6 +730,10 @@ export default {
         console.error(error);
       }
     },
+    sendHome(){
+      this.$emit('sendHome', 'studentHome');
+      console.log("meo")
+    },
   }
 };
 </script>
@@ -736,7 +750,7 @@ h2 {
   justify-content: center;
   align-items: center;
   text-align: left;
-  padding: 50px 50px;
+  padding: 2em 8em;
 }
 
 .input-title {

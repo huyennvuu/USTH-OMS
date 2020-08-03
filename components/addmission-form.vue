@@ -1,25 +1,26 @@
 <template>
   <div>
-    <div>
-      <user/>
-    </div>
+    <el-row>
+      <el-col :span="10" :offset="2">
+        <el-page-header @back="sendHome" title="" content="Admission Form" style="padding-top: 2em"></el-page-header>
+      </el-col>
+      <el-col :span="2" :offset="10">
+      </el-col>
+    </el-row> 
+    <br>
+    <el-row>
+      <el-col :span="12">
+        <img src="~/static/usth-logo.png" width="250" height="120" />
+      </el-col>
+      <el-col :span="12" >
+        <p class="university-infor">
+          Trường Đại học Khoa học và Công nghệ Hà Nội
+          <br />
+          University of Science and Technology of Hanoi
+        </p>
+      </el-col>
+    </el-row> 
     <div class="container">
-      <div>
-        <table>
-          <tr>
-            <td>
-              <img src="~/static/usth-logo.png" width="250" height="120" />
-            </td>
-            <td>
-              <p class="university-infor">
-                Trường Đại học Khoa học và Công nghệ Hà Nội
-                <br />
-                University of Science and Technology of Hanoi
-              </p>
-            </td>
-          </tr>
-        </table>
-      </div>
       <h2 class="subtitle">
         ĐƠN ĐĂNG KÝ DỰ TUYỂN HỆ CỬ NHÂN NĂM 2020
         <br />
@@ -913,6 +914,11 @@ export default {
       this.$emit('sendUpload', 'uploadPDF');
     },
 
+    sendHome(){
+      this.$emit('sendHome', 'studentHome');
+      console.log("meo")
+    },
+
     // SUBMIT DATA
     
     AddAddress() {
@@ -1026,13 +1032,14 @@ h2 {
   margin-bottom: 30px;
 }
 .container {
-  margin: 30px 80px 70px 80px;
+  border-radius: 4px;
+  margin: 0px 80px 70px 80px;
   min-height: 100vh;
   display: block;
   justify-content: center;
   align-items: center;
   text-align: left;
-  padding: 50px 100px 50px 100px;
+  padding: 1em 7em;
 }
 
 .input-title {
@@ -1133,6 +1140,6 @@ table-title {
   font-size: 18px;
   color: #606266;
   text-align: center;
-  margin-left: 18em;
+  padding-top: 2em;
 }
 </style>

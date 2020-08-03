@@ -1,10 +1,12 @@
 <template>
   <div>
-  <div>
-    <user/>
-  </div>
-  <br>
-  <div>
+    <el-row>
+      <p class="subtitle small user">
+      Hi, {{name}}
+      <user/>
+      </p>
+    </el-row>
+    
     <el-row>
       <el-col :span="24">
         <p class="subtitle big">
@@ -17,10 +19,18 @@
     </el-row>
     <br>
     <el-row>
-      <el-col :span="24"><p class="subtitle small">Jury {{currentJuryId}} Wave {{currentWaveId}} Year {{this_year}}</p></el-col>
+      <el-col :span="24"><p class="subtitle small">Jury {{currentJuryId}} Wave {{currentWaveName}} Year {{this_year}}</p></el-col>
     </el-row>
+
+    <el-row>
+      <el-col :span="24">
+        <questionBank/>
+      </el-col>
+    </el-row>
+
     <div class="student-table">
       <el-row>
+
         <el-col :span="24">
           <el-table
             :data="
@@ -33,13 +43,8 @@
             style="width: 100%"
             class="center"
           >
-            <el-table-column prop="id" label="ID" width="60" align="center"> </el-table-column>
-            <!-- <el-table-column 
-              prop="imgsrc"
-              label="Avatar"
-              width="80">
-              <img src="~/static/img/user.png" width="42" height="42" class="ava">
-            </el-table-column> -->
+            <el-table-column prop="id" label="ID" width="60" align="center"> 
+            </el-table-column>
             <el-table-column prop="full_name" label="Full Name" width="180">
             </el-table-column>
             <el-table-column prop="school_name" label="High School" width="180">
@@ -95,11 +100,11 @@
           <studentDetail
             v-if="currentComponent === 'studentDetail'"
             :currentIdDetail="this.currentIdDetail"
+            :lecturer="this.lecturer"
           />
         </el-col>
       </el-row>
     </div>
-  </div>
   </div>
 </template>
 
@@ -110,6 +115,7 @@
 import GEF from "~/components/general-evaluation-form.vue";
 import EEF from "~/components/english-evaluation-form.vue";
 import studentDetail from "~/components/student-detail.vue";
+import questionBank from "~/components/question-bank.vue"
 import user from "~/components/user.vue"
 
 export default {
@@ -124,7 +130,8 @@ export default {
     GEF,
     EEF,
     studentDetail,
-    user
+    user,
+    questionBank
   },
   data() {
     return {
@@ -138,6 +145,7 @@ export default {
           gender: ""
         }
       ],
+      lecturer: "1",
       search: "",
       currentIdDetail: "",
       currentIdGeneralEvaluate: "",
@@ -146,7 +154,8 @@ export default {
       currentJuryId: "",
       currentWaveId: "",
       currentEmployeeId: "",
-      this_year:""
+      this_year:"",
+      name: ""
     };
   },
 
@@ -165,7 +174,11 @@ export default {
   watch: {
     currentJuryId: function(value) {
       this.listStudent();
-    }
+    },
+
+    currentWaveId: function(value) {
+      this.getWaveName();
+    },
   },
   methods: {
     getYear(){
@@ -218,11 +231,28 @@ export default {
             }
           }
         );
-        console.log("meo",response);
 
         this.currentJuryId = response.data.juryId[0].id;
         this.currentWaveId = response.data.juryId[0].wave_id;
-        console.log("wave", this.currentWaveId);
+        
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
+    async getWaveName() {
+      try {
+        const response = await this.$axios.get(
+          "http://localhost/process.php?action=getWaveName",
+          {
+            params: {
+              currentWaveId: this.currentWaveId
+            }
+          }
+        );
+
+        this.currentWaveName = response.data.wave[0].wave_name;
+        console.log("wave", this.currentWaveName);
         
       } catch (error) {
         console.error(error);
@@ -259,8 +289,8 @@ export default {
           }
         );
 
-        this.isEnglishTeacher =
-          response.data.isEnglishTeacher[0].is_english_teacher;
+        this.isEnglishTeacher = response.data.isEnglishTeacher[0].is_english_teacher;
+        this.name = response.data.isEnglishTeacher[0].full_name.split(' ').slice(-1).join(' ');
         console.log("Is this English teacher?", this.isEnglishTeacher);
       } catch (error) {
         console.error(error);
@@ -275,7 +305,8 @@ tel-table-columnd{
   text-align: center;
 }
 .student-table {
-  margin: 3em 5em;
+  border-radius: 30px;
+  margin: 3em 5em 1em 5em;
   align-content: center;
   box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.1);
   padding: 0.5em;
@@ -296,5 +327,11 @@ tel-table-columnd{
 
 .small{
   font-size: 18px;
+}
+
+.user{
+  float: right;
+  padding: 1em;
+  display: flex;
 }
 </style>
