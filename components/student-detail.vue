@@ -3,7 +3,7 @@
     <div class="container">
       <el-row>
         <el-col :span="12">
-          <el-page-header @back="sendHome" title="" content="Admission Form" v-if="lecturer != 1"></el-page-header>
+          <el-page-header @back="sendHome" title="" content="Admission Form" v-if="lecturer != 1 & print!=1"></el-page-header>
         </el-col>
         <el-col :span="2" :offset="10"></el-col>
       </el-row> 
@@ -301,9 +301,9 @@
       <br>
       <div v-if="print != '1'" class="attachment">
         <p class="part-title">Motivation Letter</p>
-        <iframe :src="motivationPath" height="500px" width="700px"></iframe>
+        <iframe :src="motivationPath" height="510px" width="710px"></iframe>
         <p class="part-title">Adward</p>
-        <iframe :src="adwardPath" height="500px" width="700px"></iframe>
+        <iframe :src="adwardPath" height="510px" width="710px"></iframe>
       </div>
 
       <div v-if="showDetail == 'true'">

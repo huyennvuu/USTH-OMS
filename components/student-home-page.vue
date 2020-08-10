@@ -15,7 +15,7 @@
     <br>
     <el-main>
     <el-row>
-      <el-col :span="24"><p class="title">Addmission Wave {{this_year}}</p></el-col>
+      <el-col :span="24"><p class="title">Admission Wave {{this_year}}</p></el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="10" :offset="7">

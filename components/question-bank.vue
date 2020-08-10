@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <el-row>
-      <el-col :span="18" :offset="2"><el-input placeholder="Please enter the question ID" v-model="id"></el-input> </el-col>
+      <el-col :span="18" :offset="2"><el-input v-on:keyup.enter="getQuestion(); dialogVisible = true" placeholder="Please enter the question ID" v-model="id"></el-input> </el-col>
       <el-col :span="4"><el-button @click="getQuestion(); dialogVisible = true" class="bnt">Search</el-button></el-col>
 
       <el-dialog
@@ -70,6 +70,9 @@
         } catch (error) {
           console.error(error);
         }
+      },
+      meo(){
+        console.log("meo")
       }
     }
   }

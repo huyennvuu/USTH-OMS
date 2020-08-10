@@ -7,19 +7,20 @@
     <div class="login">
       <el-form
       :label-position="labelPosition"
-      ref="newUserData"
       :model="newUserData"
       label-width="50px"
       style="width: 310px"
+      :rules="rules" 
+      ref="ruleForm"
       >
-        <el-form-item>
-          <el-input v-model="newUserData.user_name" placeholder="username"></el-input>
+        <el-form-item prop="user_name">
+          <el-input v-model="ruleForm.user_name"  placeholder="username"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-input v-model="newUserData.email" placeholder="email@gmail.com"></el-input>
+        <el-form-item prop="email">
+          <el-input v-model="ruleForm.email" placeholder="email@gmail.com"></el-input>
         </el-form-item>
-        <el-form-item>
-          <el-input placeholder="password" v-model="newUserData.password" show-password></el-input>
+        <el-form-item prop="password">
+          <el-input placeholder="password" v-model="ruleForm.password" show-password></el-input>
         </el-form-item>
       </el-form>
 
@@ -30,6 +31,9 @@
         >Sign Up
         </el-button>
       </div>
+    <div class="home">
+      <el-link href="/">Already has an account</el-link>
+    </div>
     </div>
   </div>
 </template>
@@ -44,7 +48,23 @@ export default {
         password: "",
         email: "",
         type: "student"
-      }
+      },
+      ruleForm: {
+          user_name: '',
+          password: '',
+          email: ''
+        },
+        rules: {
+          user_name: [
+            { user_name: true, message: 'Please input user name', trigger: 'blur' }
+          ],
+          password: [
+            { required: true, message: 'Please input password', trigger: 'change' }
+          ],
+          email: [
+            { required: true, message: 'Please input email', trigger: 'change' }
+          ]
+        }
     }
   },
   methods: {

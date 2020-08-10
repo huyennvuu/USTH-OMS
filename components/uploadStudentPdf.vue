@@ -72,7 +72,7 @@
         @click="
         uploadAdwardFile(),
         uploadMotivationFile(),
-        sendDetail()
+        sendHome()
         "
         >Submit</el-button
       >
@@ -126,9 +126,10 @@ export default {
       }
     },
 
-    sendDetail() {
-      this.$emit("sendDetail", "studentDetail");
-      this.$emit("showDetail", "true");
+    sendHome() {
+      this.$emit("sendDetail", "studentHome");
+      this.$message.success('Your Admisison Form is submitted!!');
+      // this.$emit("showDetail", "true");
     },
 
     uploadAdwardFile() {

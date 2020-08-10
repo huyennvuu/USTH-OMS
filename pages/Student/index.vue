@@ -38,8 +38,7 @@
     <uploadPDF 
       v-if="currentComponent === 'uploadPDF'"
       :currentIdUpload="this.userId"
-      @sendDetail = "currentComponent = $event"  
-      @showDetail = "showDetail = $event"  
+      @sendHome = "currentComponent = $event"  
     />
   </div>
 </template>
@@ -84,8 +83,8 @@ export default {
     printForm(){
       window.print()
       this.button = 'true'
-
-    }
+      this.print = ''
+    },
   }
 }
 </script>
