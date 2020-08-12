@@ -127,7 +127,7 @@ export default {
     },
 
     sendHome() {
-      this.$emit("sendDetail", "studentHome");
+      this.$emit("sendHome", "studentHome");
       this.$message.success('Your Admisison Form is submitted!!');
       // this.$emit("showDetail", "true");
     },

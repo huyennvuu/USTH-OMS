@@ -14,13 +14,13 @@
       ref="ruleForm"
       >
         <el-form-item prop="user_name">
-          <el-input v-model="ruleForm.user_name"  placeholder="username"></el-input>
+          <el-input   placeholder="username" v-model="newUserData.user_name"></el-input>
         </el-form-item>
         <el-form-item prop="email">
-          <el-input v-model="ruleForm.email" placeholder="email@gmail.com"></el-input>
+          <el-input  placeholder="email@gmail.com" v-model="newUserData.email"></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input placeholder="password" v-model="ruleForm.password" show-password></el-input>
+          <el-input placeholder="password" v-model="newUserData.password" show-password></el-input>
         </el-form-item>
       </el-form>
 
@@ -56,13 +56,13 @@ export default {
         },
         rules: {
           user_name: [
-            { user_name: true, message: 'Please input user name', trigger: 'blur' }
+            { required: true, message: 'Please input user name', trigger: 'blur' }
           ],
           password: [
-            { required: true, message: 'Please input password', trigger: 'change' }
+            { required: true, message: 'Please input password', trigger: 'blur' }
           ],
           email: [
-            { required: true, message: 'Please input email', trigger: 'change' }
+            { required: true, message: 'Please input email', trigger: 'blur' }
           ]
         }
     }
